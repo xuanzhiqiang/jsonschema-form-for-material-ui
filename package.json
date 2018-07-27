@@ -32,10 +32,6 @@
     "shortid": "^2.2.8",
     "typeface-roboto": "0.0.54"
   },
-  "engines": {
-    "node": "8.9.4",
-    "npm": "5.7.1"
-  },
   "description": "Material UI implementation of react-jsonschema-form",
   "devDependencies": {
     "babel-eslint": "^8.2.2",
