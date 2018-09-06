@@ -7,7 +7,6 @@ const sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('build', () => {
   return gulp.src('src/**/*.{js,jsx}')
-    .pipe(sourcemaps.init())
     .pipe(babel({
       configFile: './.babelrc'
     }))
