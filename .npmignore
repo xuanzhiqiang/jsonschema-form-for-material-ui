@@ -1,12 +1,12 @@
 *.spec.js
 .babelrc
 .eslintrc.js
-.gulpfile
+gulpfile.js
 jsdom-setup.js
 mocha.setup.js
 webpack.config.js
 
 demo
-mocheawesome-report-unit
+mochawesome-report-unit
 node_modules
 src

@@ -101,7 +101,7 @@ Default - `textarea`
 * password
 * textarea
 * checkboxes
-* ~~alt-datetime (`todo`)~~
+* ~~alt-datetime (~~`todo`~~)~~
 
 #### ui:title - `string`
 
@@ -119,7 +119,7 @@ disabled - `boolean`
 
 disabled - `function(data, objectData)` should return boolean
 
-~~inputType (`todo`) - Format the input to a specific type (e.g. Phone, Credit Card, Date, etc)~~
+~~inputType (~~`todo`~~) - Format the input to a specific type (e.g. Phone, Credit Card, Date, etc)~~
 
 #### ui:help - `string`
 
