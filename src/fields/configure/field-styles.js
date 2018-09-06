@@ -1,3 +1,5 @@
-export default theme => ({
+const theme = () => ({
   root: {},
 });
+
+export default theme;

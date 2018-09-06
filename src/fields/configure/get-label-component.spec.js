@@ -3,8 +3,7 @@
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-
-const inject = require('inject-loader!./get-label-component');
+import proxyquire from 'proxyquire';
 
 chai.use(sinonChai);
 
@@ -16,8 +15,8 @@ chai.use(sinonChai);
 describe('getLabelComponent', () => {
   beforeEach(() => {
     InputLabelSpy = sinon.spy();
-    getLabelComponent = inject({
-      'material-ui/Input': {
+    getLabelComponent = proxyquire('./get-label-component', {
+      '@material-ui/core/Input': {
         InputLabel: InputLabelSpy,
       },
     }).default;

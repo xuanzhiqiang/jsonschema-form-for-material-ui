@@ -1,8 +1,8 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
 import { generate } from 'shortid';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 import formStyles from './form-styles';
 import FormField from './FormField';
 import updateFormData, { addListItem, removeListItem, moveListItem } from './helpers/update-form-data';
@@ -16,6 +16,7 @@ class Form extends React.Component {
     validation: getValidationResult(this.props.schema, this.props.formData),
     id: generate(),
   }
+
   componentWillReceiveProps = (nextProps) => {
     let validation;
     if (!isEqual(nextProps.schema, this.props.schema)) {
@@ -29,28 +30,36 @@ class Form extends React.Component {
       data: nextProps.formData,
     });
   }
+
   onChange = field => (value) => {
+    // eslint-disable-next-line react/no-access-state-in-setstate
     const data = updateFormData(this.state.data, field, value);
     this.setState({
       data,
       validation: getValidationResult(this.props.schema, data),
     }, this.notifyChange);
   }
+
   onMoveItemUp = (path, idx) => () => {
-    this.setState({ data: moveListItem(this.state.data, path, idx, -1) }, this.notifyChange);
+    this.setState(prevState => ({ data: moveListItem(prevState.data, path, idx, -1) }), this.notifyChange);
   }
+
   onMoveItemDown = (path, idx) => () => {
-    this.setState({ data: moveListItem(this.state.data, path, idx, 1) }, this.notifyChange);
+    this.setState(prevState => ({ data: moveListItem(prevState.data, path, idx, 1) }), this.notifyChange);
   }
+
   onDeleteItem = (path, idx) => () => {
-    this.setState({ data: removeListItem(this.state.data, path, idx) }, this.notifyChange);
+    this.setState(prevState => ({ data: removeListItem(prevState.data, path, idx) }), this.notifyChange);
   }
+
   onAddItem = (path, defaultValue) => () => {
-    this.setState({ data: addListItem(this.state.data, path, defaultValue || '') }, this.notifyChange);
+    this.setState(prevState => ({ data: addListItem(prevState.data, path, defaultValue || '') }), this.notifyChange);
   }
+
   onSubmit = () => {
     this.props.onSubmit({ formData: this.state.data });
   }
+
   notifyChange = () => {
     const { onChange } = this.props;
     const { data } = this.state;
@@ -58,6 +67,7 @@ class Form extends React.Component {
       onChange({ formData: data });
     }
   }
+
   render() {
     const { classes, formData, onSubmit, onChange, onCancel, ...rest } = this.props;
     const { validation, id } = this.state;

@@ -1,6 +1,6 @@
 // require('testdom')('<html><body></body></html>');
 require('./jsdom-setup');
-require('babel-register');
+require('@babel/register');
 
 const gs = JSON.stringify;
 global.JSON_stringify = gs;

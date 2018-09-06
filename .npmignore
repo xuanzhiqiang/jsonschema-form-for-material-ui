@@ -1,4 +1,5 @@
-test*.js
-dist/demo.js
+*.spec.js
+src
+demo
 node_modules
 mocheawesome-report-unit

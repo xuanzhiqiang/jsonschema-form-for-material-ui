@@ -4,9 +4,9 @@
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
+const proxyquire = require('proxyquire').noCallThru();
 
 chai.use(sinonChai);
-const inject = require('inject-loader!./get-component');
 
 let InputSpy;
 let RadioGroupSpy;
@@ -20,8 +20,8 @@ describe('getComponent', () => {
     RadioGroupSpy = sinon.spy();
     CheckboxSpy = sinon.spy();
     SelectSpy = sinon.spy();
-    getComponent = inject({
-      'material-ui/Input': {
+    getComponent = proxyquire('./get-component', {
+      '@material-ui/core/Input': {
         default: InputSpy,
       },
       '../components': {

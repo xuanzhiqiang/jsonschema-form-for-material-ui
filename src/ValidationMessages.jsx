@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import keys from 'lodash/keys';
 import filter from 'lodash/filter';
 
@@ -17,6 +17,7 @@ const Validations = ({ validation }) => (
     }
   </div>
 );
+
 const ValidationMessages = ({ validation }) => (
   <div>
     {validation && filter(keys(validation), (k) => {

@@ -1,7 +1,6 @@
-// import Input, { InputLabel } from 'material-ui/Input'; // eslint-disable-line import/no-named-default
-import { FormLabel } from 'material-ui/Form';
+import FormLabel from '@material-ui/core/FormLabel';
 
-const { InputLabel } = require('material-ui/Input');
+const { InputLabel } = require('@material-ui/core/Input');
 
 
 export default ({ schema, uiSchema = {} }) => {

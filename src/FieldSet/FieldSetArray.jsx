@@ -1,10 +1,10 @@
 import React from 'react';
 import includes from 'lodash/includes';
 import slice from 'lodash/slice';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import AddCircle from '@material-ui/icons/AddCircle';
 import isArray from 'lodash/isArray';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import FormField from '../FormField';
 import fieldSetStyles from './field-set-styles';
 import getDefaultValue from '../helpers/get-default-value';
@@ -15,6 +15,7 @@ export const RawFieldSetArray = (props) => {
     startIdx = 0, className, classes,
     schema = {}, uiSchema = {}, data, path, onMoveItemUp, onMoveItemDown, onDeleteItem, ...rest
   } = props;
+  
   return (
     <div className={classes.root}>
       {!isArray(schema.items) && !schema.uniqueItems && (

@@ -4,9 +4,8 @@
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
+const proxyquire = require('proxyquire').noCallThru();
 // import configureComponent from './configure-component';
-
-const inject = require('inject-loader!./configure-component');
 
 chai.use(sinonChai);
 
@@ -17,7 +16,7 @@ describe('configureComponent', () => {
   const getLabelComponent = sinon.stub();
   const getComponent = sinon.stub();
   beforeEach(() => {
-    configureComponent = inject({
+    configureComponent = proxyquire('./configure-component', {
       './get-component-props': getComponentProps,
       './get-label-component-props': getLabelComponentProps,
       './get-label-component': getLabelComponent,
