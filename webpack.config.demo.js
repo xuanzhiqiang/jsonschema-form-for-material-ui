@@ -87,7 +87,7 @@ var config = {
     extractCss,
     extractScss,
     new HtmlWebpackPlugin({
-      template: 'src/demo/index.html',
+      template: 'demo/index.html',
     }),
     new webpack.NamedModulesPlugin(),
   ],

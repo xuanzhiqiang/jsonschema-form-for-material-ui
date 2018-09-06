@@ -1,12 +1,11 @@
 {
   "author": "Graham King <gking2224@gmail.com>",
   "scripts": {
-    "build": "webpack",
-    "test": "npm run test:ci -- --watch",
+    "build": "gulp build",
+    "test": "gulp test",
     "lint": "eslint src",
-    "start": "node src/demo/server.js",
-    "deploy": "npm run build && npm version patch && npm publish",
-    "test:ci": "mocha --glob \"*.spec.js*\" --reporter mochawesome --require mocha.setup.js --reporter-options reportDir=mochawesome-report-unit --recursive dist"
+    "start": "NODE_ENV=development webpack-dev-server",
+    "deploy": "npm run build && npm version patch && npm publish"
   },
   "repository": {
     "type": "git",
@@ -98,6 +97,7 @@
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-middleware": "^3.2.0",
+    "webpack-dev-server": "^3.1.7",
     "webpack-hot-middleware": "^2.23.1"
   },
   "license": "ISC",

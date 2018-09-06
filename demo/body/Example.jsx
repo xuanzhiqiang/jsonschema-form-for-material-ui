@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import styles from './example-styles';
 import Source from './Source';
-import Form from '../../dist/Form';
+import Form from '../../src/Form';
 
 class Example extends React.Component {
   state = {

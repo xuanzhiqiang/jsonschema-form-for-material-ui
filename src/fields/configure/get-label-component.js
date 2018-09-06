@@ -1,7 +1,5 @@
 import FormLabel from '@material-ui/core/FormLabel';
-
-const { InputLabel } = require('@material-ui/core/Input');
-
+import InputLabel from '@material-ui/core/InputLabel';
 
 export default ({ schema, uiSchema = {} }) => {
   const widget = uiSchema['ui:widget'];
