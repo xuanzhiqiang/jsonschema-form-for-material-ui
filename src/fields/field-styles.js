@@ -16,4 +16,7 @@ export default theme => ({
     color: theme.palette.grey[500],
   },
   withLabel: {},
+  // infoButton: {},
+  // infoPaper: {},
+  // infoPopover: {}
 });

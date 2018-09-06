@@ -19,5 +19,6 @@ export default (props) => {
     componentProps: getComponentProps(props),
     LabelComponent: title && getLabelComponent(props),
     labelComponentProps: getLabelComponentProps(props),
+    popUpOffset: props.popUpOffset,
   };
 };

@@ -27,7 +27,7 @@ export default theme => ({
   },
 
   'icon': {
-    fontSize: '80%',
+    fontSize: 'inherit',
     marginLeft: theme.spacing.unit * 2,
   },
   'title': {

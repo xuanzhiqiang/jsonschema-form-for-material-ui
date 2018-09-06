@@ -1,4 +1,3 @@
-
 export default theme => ({
   body: {
     'padding': theme.spacing.unit * 2,
