@@ -21,8 +21,7 @@ class Form extends React.Component {
     let validation;
     if (!isEqual(nextProps.schema, this.props.schema)) {
       validation = {};
-    }
-    else {
+    } else {
       validation = getValidationResult(this.props.schema, nextProps.formData);
     }
     this.setState({
@@ -69,7 +68,7 @@ class Form extends React.Component {
   }
 
   render() {
-    const { classes, formData, onSubmit, onChange, onCancel, ...rest } = this.props;
+    const { classes, formData, onSubmit, onChange, onCancel, cancelText, submitText, ...rest } = this.props;
     const { validation, id } = this.state;
     return (
       <Paper className={classes.root}>
@@ -87,7 +86,7 @@ class Form extends React.Component {
           onAddItem={this.onAddItem}
           {...rest}
         />
-        <FormButtons onSubmit={this.onSubmit} onCancel={onCancel} classes={classes} />
+      <FormButtons onSubmit={this.onSubmit} onCancel={onCancel} classes={classes} cancelText={cancelText} submitText={submitText}  />
       </Paper>
     );
   }

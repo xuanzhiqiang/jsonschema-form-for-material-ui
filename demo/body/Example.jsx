@@ -63,6 +63,8 @@ class Example extends React.Component {
               onSubmit={this.onSubmit}
               onChange={this.onFormChanged}
               popUpOffset={{top:30, left:0}}
+              cancelText={'Cancel'}
+              submitText={'Save'}
             />
           </div>
         </div>

@@ -85,6 +85,8 @@ formData | The initial data with which to populate the form
 onCancel | Called when the `Cancel` button is pressed
 onSubmit | Called when the `Submit` button is pressed
 onChange | Called when form data is changed
+cancelText | Text for the `Cancel` button (`Cancel` by default)
+submitText | Text for the `Submit` button (`Submit` by default)
 
 ## In-depth prop descriptions
 
