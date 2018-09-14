@@ -2,6 +2,8 @@ export default ({
   fieldSet: theme => ({
     root: {
       display: 'flex',
+      flexDirection: 'column',
+      border: 0,
     },
     listItem: {
       'border': `1px dotted ${theme.palette.primary.main}`,

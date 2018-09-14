@@ -86,7 +86,7 @@ class Form extends React.Component {
           onAddItem={this.onAddItem}
           {...rest}
         />
-      <FormButtons onSubmit={this.onSubmit} onCancel={onCancel} classes={classes} cancelText={cancelText} submitText={submitText}  />
+        <FormButtons onSubmit={this.onSubmit} onCancel={onCancel} classes={classes} cancelText={cancelText} submitText={submitText}  />
       </Paper>
     );
   }
