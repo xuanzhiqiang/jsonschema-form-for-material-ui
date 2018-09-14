@@ -84,6 +84,7 @@ class Form extends React.Component {
           onMoveItemDown={this.onMoveItemDown}
           onDeleteItem={this.onDeleteItem}
           onAddItem={this.onAddItem}
+          classes={classes}
           {...rest}
         />
         <FormButtons onSubmit={this.onSubmit} onCancel={onCancel} classes={classes} cancelText={cancelText} submitText={submitText}  />
