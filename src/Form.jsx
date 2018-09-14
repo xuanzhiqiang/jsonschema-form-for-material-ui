@@ -77,6 +77,7 @@ class Form extends React.Component {
           path={''}
           data={this.state.data}
           id={id}
+          className={classes.field}
           onChange={this.onChange}
           onSubmit={this.onSubmit}
           validation={validation}
@@ -84,7 +85,6 @@ class Form extends React.Component {
           onMoveItemDown={this.onMoveItemDown}
           onDeleteItem={this.onDeleteItem}
           onAddItem={this.onAddItem}
-          classes={classes}
           {...rest}
         />
         <FormButtons onSubmit={this.onSubmit} onCancel={onCancel} classes={classes} cancelText={cancelText} submitText={submitText}  />

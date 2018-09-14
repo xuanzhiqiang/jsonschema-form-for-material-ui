@@ -23,6 +23,12 @@ npm install --save jsonschema-form-for-material-ui
 ```js
 import SchemaForm from 'jsonschema-form-for-material-ui';
 
+const styles = theme => ({
+  field: {},
+  formButtons: {},
+  root: {},
+});
+
 const schema = {
   "title": "A registration form",
   "description": "A simple form example.",
@@ -66,6 +72,7 @@ const initialFormData = {
 }
 
 <SchemaForm
+  classes={classes}
   schema={schema}
   uiSchema={uiSchema}
   formData={initialFormData}
@@ -80,6 +87,7 @@ const initialFormData = {
 Prop | Description
 -|-
 schema | The JSON Schema that will be the base of the form
+classes | `withStyles()` classes that get passed to root components for better styling of the form
 uiSchema| Extra styling for fields. </br> Each key references one schema key </br>
 formData | The initial data with which to populate the form
 onCancel | Called when the `Cancel` button is pressed
@@ -87,6 +95,17 @@ onSubmit | Called when the `Submit` button is pressed
 onChange | Called when form data is changed
 cancelText | Text for the `Cancel` button (`Cancel` by default)
 submitText | Text for the `Submit` button (`Submit` by default)
+
+## Classes
+
+name | element
+-|-
+root | The surrounding `Paper` element  
+field | Fields container
+formButtons | Button div
+button | Cancel/Submit form button
+cancel | Cancel form button
+submit | Submit form button
 
 ## In-depth prop descriptions
 
