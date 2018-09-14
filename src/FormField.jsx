@@ -18,7 +18,6 @@ export class RawFormField extends React.Component {
     return (
       <Field
         className={classes.field}
-        classes={classes}
         path={path}
         schema={schema}
         data={data}
