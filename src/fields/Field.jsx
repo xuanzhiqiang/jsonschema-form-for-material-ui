@@ -7,8 +7,7 @@ export default (props) => {
   const { type } = schema;
   const htmlId = `${id}_${path}`;
   const configuredProps = configureComponent({ ...props, htmlId });
-
-  const descriptionText = uiSchema['ui:description'];
+  const descriptionText = uiSchema['ui:description'] || schema.description;
   const helpText = uiSchema['ui:help'];
   return (
     <ConfiguredField
