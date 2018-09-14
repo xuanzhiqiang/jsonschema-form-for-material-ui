@@ -15,5 +15,7 @@ export default theme => ({
   button: {
     fontSize: '100%',
   },
-  field: {},
+  field: {
+    fontSize: '100%',
+  },
 });
