@@ -30,4 +30,15 @@ export default theme => ({
   'sourceCtr': {},
   'display': {},
   'ctr': {},
+  field: {
+    backgroundColor: 'grey',
+    paddingLeft: theme.spacing.unit * 4,
+  },
+  formButtons: {
+    order: 2,
+  },
+  root: {
+    display: 'flex',
+    padding: theme.spacing.unit,
+  },
 });

@@ -56,6 +56,7 @@ class Example extends React.Component {
           </div>
           <div className={classes.display}>
             <Form
+              classes={classes}
               schema={schema}
               uiSchema={uiSchema}
               formData={formData}
