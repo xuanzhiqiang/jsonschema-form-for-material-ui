@@ -92,5 +92,4 @@ class Form extends React.Component {
     );
   }
 }
-
 export default withStyles(formStyles)(Form);

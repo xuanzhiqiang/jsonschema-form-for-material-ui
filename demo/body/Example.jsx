@@ -1,9 +1,22 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import styles from './example-styles';
 import Source from './Source';
 import Form from '../../src/Form';
+
+const formStyles = theme => createStyles({
+  field: {
+    paddingLeft: theme.spacing.unit * 4,
+  },
+  formButtons: {
+    order: 2,
+  },
+  root: {
+    display: 'flex',
+    padding: theme.spacing.unit,
+  },
+});
 
 class Example extends React.Component {
   state = {
@@ -56,7 +69,7 @@ class Example extends React.Component {
           </div>
           <div className={classes.display}>
             <Form
-              classes={classes}
+              styles={formStyles}
               schema={schema}
               uiSchema={uiSchema}
               formData={formData}
