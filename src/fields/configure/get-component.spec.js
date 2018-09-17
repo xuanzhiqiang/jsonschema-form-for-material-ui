@@ -4,6 +4,7 @@
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
+
 const proxyquire = require('proxyquire').noCallThru();
 
 chai.use(sinonChai);

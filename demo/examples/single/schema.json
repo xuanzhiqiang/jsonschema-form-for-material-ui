@@ -1,4 +1,5 @@
 {
   "title": "A single-field form",
-  "type": "string"
+  "type": "string",
+  "description": "Testing testing 123"
 }

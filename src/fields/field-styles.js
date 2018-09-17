@@ -16,7 +16,14 @@ export default theme => ({
     color: theme.palette.grey[500],
   },
   withLabel: {},
+  label: {
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   // infoButton: {},
-  // infoPaper: {},
+  infoPaper: {
+    padding: theme.spacing.unit,
+  },
   // infoPopover: {}
 });

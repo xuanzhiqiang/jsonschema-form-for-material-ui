@@ -73,20 +73,22 @@ class Form extends React.Component {
     return (
       <Paper className={classes.root}>
         <ValidationMessages validation={validation} />
-        <FormField
-          path={''}
-          data={this.state.data}
-          id={id}
-          className={classes.field}
-          onChange={this.onChange}
-          onSubmit={this.onSubmit}
-          validation={validation}
-          onMoveItemUp={this.onMoveItemUp}
-          onMoveItemDown={this.onMoveItemDown}
-          onDeleteItem={this.onDeleteItem}
-          onAddItem={this.onAddItem}
-          {...rest}
-        />
+        <div className={classes.field}>
+          <FormField
+            path={''}
+            data={this.state.data}
+            id={id}
+            className={classes.formfield}
+            onChange={this.onChange}
+            onSubmit={this.onSubmit}
+            validation={validation}
+            onMoveItemUp={this.onMoveItemUp}
+            onMoveItemDown={this.onMoveItemDown}
+            onDeleteItem={this.onDeleteItem}
+            onAddItem={this.onAddItem}
+            {...rest}
+          />
+        </div>
         <FormButtons onSubmit={this.onSubmit} onCancel={onCancel} classes={classes} cancelText={cancelText} submitText={submitText}  />
       </Paper>
     );

@@ -39,11 +39,16 @@ export class RawConfiguredField extends React.Component {
     return (
       <FormControl className={classNames(classes.root, { [classes.withLabel]: LabelComponent })}>
         {LabelComponent && title &&
-          (<LabelComponent {...labelComponentProps}>
+          (<LabelComponent className={classes.label} {...labelComponentProps}>
               {title}
+              {descriptionText ?
+                <PopoverInfo
+                  descriptionText={descriptionText}
+                  classes={classes}
+                /> : null}
           </LabelComponent>)
         }
-        {descriptionText ?
+        {descriptionText && !(LabelComponent && title) ?
           <PopoverInfo
             descriptionText={descriptionText}
             classes={classes}

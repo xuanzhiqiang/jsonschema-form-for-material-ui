@@ -9,7 +9,7 @@ const styles = ({});
 
 class Demo extends React.Component {
   state = {
-    selectedDemo: examples.simple,
+    selectedDemo: examples.single,
   }
 
   onSelectMenuItem = type => () => {

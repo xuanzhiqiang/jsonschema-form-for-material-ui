@@ -76,7 +76,6 @@ class Example extends React.Component {
               onCancel={this.onCancel}
               onSubmit={this.onSubmit}
               onChange={this.onFormChanged}
-              popUpOffset={{top:30, left:0}}
               cancelText={'Cancel'}
               submitText={'Save'}
             />

@@ -16,6 +16,8 @@ export default theme => ({
     fontSize: '100%',
   },
   field: {
-    fontSize: '100%',
+    display: 'flex',
+    flexDirection: 'column',
   },
+  formfield: {},
 });

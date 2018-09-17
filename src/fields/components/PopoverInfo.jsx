@@ -44,7 +44,6 @@ class PopoverInfo extends React.Component {
     const { descriptionText, classes={} } = this.props;
     return (
       <IconButton
-        style={{position: 'absolute', left: -20, top: 15, width: 20, height: 20}}
         aria-owns={open ? 'mouse-over-popover' : null}
         aria-haspopup="true"
         disableRipple
