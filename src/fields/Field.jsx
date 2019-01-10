@@ -3,7 +3,7 @@ import configureComponent from './configure';
 import ConfiguredField from './ConfiguredField';
 
 export default (props) => {
-  const { path, id, schema, data, uiSchema, validation, showHelperText } = props;
+  const { path, id, schema, data, uiSchema, validation, showHelperError } = props;
   const { type } = schema;
   const htmlId = `${id}_${path}`;
   const configuredProps = configureComponent({ ...props, htmlId });
@@ -16,7 +16,7 @@ export default (props) => {
       type={type}
       descriptionText={descriptionText}
       helpText={helpText}
-      showHelperText={showHelperText}
+      showHelperError={showHelperError}
       validation={validation}
       {...configuredProps}
     />
