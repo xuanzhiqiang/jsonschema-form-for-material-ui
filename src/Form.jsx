@@ -68,11 +68,12 @@ class Form extends React.Component {
   }
 
   render() {
-    const { classes, formData, onSubmit, onChange, onCancel, cancelText, submitText, ...rest } = this.props;
+    const { classes, formData, onSubmit, onChange, onCancel, cancelText, submitText, showErrorList, ...rest } = this.props;
     const { validation, id } = this.state;
+
     return (
       <Paper className={classes.root}>
-        <ValidationMessages validation={validation} />
+        { showErrorList ? <ValidationMessages validation={validation} /> : null }
         <div className={classes.field}>
           <FormField
             path={''}
