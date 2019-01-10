@@ -31,6 +31,7 @@ export class RawConfiguredField extends React.Component {
         type,
         descriptionText,
         helpT = helpText,
+        showHelperText,
         Component = Input,
         LabelComponent,
         labelComponentProps = {},
@@ -40,7 +41,7 @@ export class RawConfiguredField extends React.Component {
         id,
         validation
     } = this.props;
-    const helpText = validation && validation.length > 0 ? this.formatErrorMessages() : helpT;
+    const helpText = (showHelperText && validation && validation.length > 0) ? this.formatErrorMessages() : helpT;
     return (
       <FormControl error={validation && validation.length > 0} className={classNames(classes.root, { [classes.withLabel]: LabelComponent })}>
         {LabelComponent && title &&
