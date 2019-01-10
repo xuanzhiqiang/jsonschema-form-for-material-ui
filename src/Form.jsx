@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import isEqual from 'lodash/isEqual';
 import { generate } from 'shortid';
 import { withStyles } from '@material-ui/core/styles';
@@ -96,3 +97,17 @@ class Form extends React.Component {
   }
 }
 export default withStyles(formStyles)(Form);
+
+Form.propTypes = {
+  schema: PropTypes.object.isRequired,
+  classes: PropTypes.object,
+  uiSchema: PropTypes.object,
+  formData: PropTypes.any,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  onCancel: PropTypes.func,
+  cancelText: PropTypes.string,
+  submitText: PropTypes.string,
+  showErrorList: PropTypes.bool,
+  showHelperError: PropTypes.bool
+};
