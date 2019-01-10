@@ -19,14 +19,18 @@ export class RawConfiguredField extends React.Component {
     return false;
   };
 
+  formatErrorMessages = () => {
+    const { validation } = this.props;
+    return validation.map( error => error.message).toString();
+  }
+
   render() {
-    // debounce(() => { console.log(1); }, 250, { leading: true });
     const {
       classes = {},
         data,
         type,
         descriptionText,
-        helpText,
+        helpT = helpText,
         Component = Input,
         LabelComponent,
         labelComponentProps = {},
@@ -34,10 +38,11 @@ export class RawConfiguredField extends React.Component {
         className,
         componentProps = {},
         id,
+        validation
     } = this.props;
-
+    const helpText = validation && validation.length > 0 ? this.formatErrorMessages() : helpT;
     return (
-      <FormControl className={classNames(classes.root, { [classes.withLabel]: LabelComponent })}>
+      <FormControl error={validation && validation.length > 0} className={classNames(classes.root, { [classes.withLabel]: LabelComponent })}>
         {LabelComponent && title &&
           (<LabelComponent className={classes.label} {...labelComponentProps}>
               {title}
@@ -59,7 +64,7 @@ export class RawConfiguredField extends React.Component {
           type={type}
           {...componentProps}
         />
-        {helpText && <FormHelperText id={`${id}-help`}>{helpText}</FormHelperText>}
+        <FormHelperText id={`${id}-help`}>{helpText}</FormHelperText>
       </FormControl>
     );
   }
