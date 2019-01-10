@@ -12,6 +12,12 @@ import ValidationMessages from './ValidationMessages';
 import FormButtons from './FormButtons';
 
 class Form extends React.Component {
+  static defaultProps = {
+    uiSchema: {},
+    showErrorList: false,
+    showHelperError: true
+  };
+
   state = {
     data: this.props.formData,
     validation: getValidationResult(this.props.schema, this.props.formData),
