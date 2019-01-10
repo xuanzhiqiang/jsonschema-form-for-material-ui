@@ -4,7 +4,6 @@ const Input = require('@material-ui/core/Input').default;
 const { RadioGroup, Select, Checkbox } = require('../components');
 
 export default ({ schema, uiSchema = {} }) => {
-  // console.log('getComponent schema: %o, uiSchema: %o', schema, uiSchema);
   const widget = uiSchema['ui:widget'];
   const { type } = schema;
 
