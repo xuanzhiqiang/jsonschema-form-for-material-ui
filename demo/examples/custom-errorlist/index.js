@@ -11,7 +11,7 @@ function ErrorListTemplate({ errors }) {
         Object.values(errors).map(errorArray => {
           return errorArray.map((error, index) => (
               <li key={index} style={{ color: "blue" }}>
-              {`Customized errors ===> ${error.message}`}
+              {`Customized errors (${error.message})`}
             </li>
           ));
         })

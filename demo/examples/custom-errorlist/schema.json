@@ -6,12 +6,12 @@
     "pass1": {
       "title": "Password",
       "type": "string",
-      "minLength": 50
+      "minLength": 20
     },
     "pass2": {
       "title": "Repeat password",
       "type": "string",
-      "minLength": 50
+      "minLength": 20
     },
     "age": {
       "title": "Age",
