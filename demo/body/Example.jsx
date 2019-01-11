@@ -52,7 +52,7 @@ class Example extends React.Component {
 
   render() {
     const { data, classes } = this.props;
-    const { title } = data;
+    const { title, showErrorList, showHelperError, ErrorList } = data;
     const { schema, uiSchema, formData } = this.state;
     return (
       <Paper className={classes.root}>
@@ -78,7 +78,9 @@ class Example extends React.Component {
               onChange={this.onFormChanged}
               cancelText={'Cancel'}
               submitText={'Save'}
-              {...data}
+              showErrorList={showErrorList}
+              showHelperError={showHelperError}
+              ErrorList={ErrorList}
             />
           </div>
         </div>
