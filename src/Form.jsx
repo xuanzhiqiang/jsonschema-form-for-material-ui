@@ -8,14 +8,15 @@ import formStyles from './form-styles';
 import FormField from './FormField';
 import updateFormData, { addListItem, removeListItem, moveListItem } from './helpers/update-form-data';
 import getValidationResult from './helpers/validation';
-import ErrorList from './ErrorList';
+import { default as DefaultErrorList } from "./ErrorList";
 import FormButtons from './FormButtons';
 
 class Form extends React.Component {
   static defaultProps = {
     uiSchema: {},
-    showErrorList: true,
-    showHelperError: true
+    showErrorList: false,
+    showHelperError: true,
+    ErrorList: DefaultErrorList,
   };
 
   state = {
@@ -75,7 +76,7 @@ class Form extends React.Component {
   }
 
   render() {
-    const { classes, formData, onSubmit, onChange, onCancel, cancelText, submitText, showErrorList, ...rest } = this.props;
+    const { classes, formData, onSubmit, onChange, onCancel, cancelText, submitText, showErrorList, ErrorList, ...rest } = this.props;
     const { errors, id } = this.state;
 
     return (
