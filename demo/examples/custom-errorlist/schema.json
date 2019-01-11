@@ -1,0 +1,22 @@
+{
+  "title": "Custom Error List",
+  "description": "This form has a custom error list component",
+  "type": "object",
+  "properties": {
+    "pass1": {
+      "title": "Password",
+      "type": "string",
+      "minLength": 50
+    },
+    "pass2": {
+      "title": "Repeat password",
+      "type": "string",
+      "minLength": 50
+    },
+    "age": {
+      "title": "Age",
+      "type": "number",
+      "minimum": 65
+    }
+  }
+}

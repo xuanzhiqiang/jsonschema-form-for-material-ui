@@ -78,6 +78,7 @@ class Example extends React.Component {
               onChange={this.onFormChanged}
               cancelText={'Cancel'}
               submitText={'Save'}
+              {...data}
             />
           </div>
         </div>
