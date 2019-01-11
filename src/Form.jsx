@@ -8,31 +8,31 @@ import formStyles from './form-styles';
 import FormField from './FormField';
 import updateFormData, { addListItem, removeListItem, moveListItem } from './helpers/update-form-data';
 import getValidationResult from './helpers/validation';
-import ValidationMessages from './ValidationMessages';
+import ErrorList from './ErrorList';
 import FormButtons from './FormButtons';
 
 class Form extends React.Component {
   static defaultProps = {
     uiSchema: {},
-    showErrorList: false,
+    showErrorList: true,
     showHelperError: true
   };
 
   state = {
     data: this.props.formData,
-    validation: getValidationResult(this.props.schema, this.props.formData),
+    errors: getValidationResult(this.props.schema, this.props.formData),
     id: generate(),
   }
 
   componentWillReceiveProps = (nextProps) => {
-    let validation;
+    let errors;
     if (!isEqual(nextProps.schema, this.props.schema)) {
-      validation = {};
+      errors = {};
     } else {
-      validation = getValidationResult(this.props.schema, nextProps.formData);
+      errors = getValidationResult(this.props.schema, nextProps.formData);
     }
     this.setState({
-      validation,
+      errors,
       data: nextProps.formData,
     });
   }
@@ -42,7 +42,7 @@ class Form extends React.Component {
     const data = updateFormData(this.state.data, field, value);
     this.setState({
       data,
-      validation: getValidationResult(this.props.schema, data),
+      errors: getValidationResult(this.props.schema, data),
     }, this.notifyChange);
   }
 
@@ -76,11 +76,11 @@ class Form extends React.Component {
 
   render() {
     const { classes, formData, onSubmit, onChange, onCancel, cancelText, submitText, showErrorList, ...rest } = this.props;
-    const { validation, id } = this.state;
+    const { errors, id } = this.state;
 
     return (
       <Paper className={classes.root}>
-        { showErrorList ? <ValidationMessages validation={validation} /> : null }
+        { showErrorList ? <ErrorList errors={errors} /> : null }
         <div className={classes.field}>
           <FormField
             path={''}
@@ -89,7 +89,7 @@ class Form extends React.Component {
             className={classes.formfield}
             onChange={this.onChange}
             onSubmit={this.onSubmit}
-            validation={validation}
+            errors={errors}
             onMoveItemUp={this.onMoveItemUp}
             onMoveItemDown={this.onMoveItemDown}
             onDeleteItem={this.onDeleteItem}
@@ -115,5 +115,6 @@ Form.propTypes = {
   cancelText: PropTypes.string,
   submitText: PropTypes.string,
   showErrorList: PropTypes.bool,
-  showHelperError: PropTypes.bool
+  showHelperError: PropTypes.bool,
+  ErrorList: PropTypes.func,
 };

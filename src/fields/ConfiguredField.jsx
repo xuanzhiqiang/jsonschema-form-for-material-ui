@@ -20,8 +20,8 @@ export class RawConfiguredField extends React.Component {
   };
 
   formatErrorMessages = () => {
-    const { validation } = this.props;
-    return validation.map( error => error.message).toString();
+    const { errors } = this.props;
+    return errors.map( error => error.message).toString();
   }
 
   render() {
@@ -39,11 +39,11 @@ export class RawConfiguredField extends React.Component {
         className,
         componentProps = {},
         id,
-        validation
+        errors
     } = this.props;
-    const helpText = (showHelperError && validation && validation.length > 0) ? this.formatErrorMessages() : helpT;
+    const helpText = (showHelperError && errors && errors.length > 0) ? this.formatErrorMessages() : helpT;
     return (
-      <FormControl error={validation && validation.length > 0} className={classNames(classes.root, { [classes.withLabel]: LabelComponent })}>
+      <FormControl error={errors && errors.length > 0} className={classNames(classes.root, { [classes.withLabel]: LabelComponent })}>
         {LabelComponent && title &&
           (<LabelComponent className={classes.label} {...labelComponentProps}>
               {title}
