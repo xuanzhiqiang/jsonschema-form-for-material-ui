@@ -95,6 +95,8 @@ onSubmit | Called when the `Submit` button is pressed
 onChange | Called when form data is changed
 cancelText | Text for the `Cancel` button (`Cancel` by default)
 submitText | Text for the `Submit` button (`Submit` by default)
+showErrorList | Boolean to display the error list
+showHelperError | Boolean to display error in FormHelperText
 
 ## Classes
 

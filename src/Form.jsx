@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import isEqual from 'lodash/isEqual';
 import { generate } from 'shortid';
 import { withStyles } from '@material-ui/core/styles';
@@ -7,25 +8,32 @@ import formStyles from './form-styles';
 import FormField from './FormField';
 import updateFormData, { addListItem, removeListItem, moveListItem } from './helpers/update-form-data';
 import getValidationResult from './helpers/validation';
-import ValidationMessages from './ValidationMessages';
+import { default as DefaultErrorList } from "./ErrorList";
 import FormButtons from './FormButtons';
 
 class Form extends React.Component {
+  static defaultProps = {
+    uiSchema: {},
+    showErrorList: false,
+    showHelperError: true,
+    ErrorList: DefaultErrorList,
+  };
+
   state = {
     data: this.props.formData,
-    validation: getValidationResult(this.props.schema, this.props.formData),
+    errors: getValidationResult(this.props.schema, this.props.formData),
     id: generate(),
   }
 
   componentWillReceiveProps = (nextProps) => {
-    let validation;
+    let errors;
     if (!isEqual(nextProps.schema, this.props.schema)) {
-      validation = {};
+      errors = {};
     } else {
-      validation = getValidationResult(this.props.schema, nextProps.formData);
+      errors = getValidationResult(this.props.schema, nextProps.formData);
     }
     this.setState({
-      validation,
+      errors,
       data: nextProps.formData,
     });
   }
@@ -35,7 +43,7 @@ class Form extends React.Component {
     const data = updateFormData(this.state.data, field, value);
     this.setState({
       data,
-      validation: getValidationResult(this.props.schema, data),
+      errors: getValidationResult(this.props.schema, data),
     }, this.notifyChange);
   }
 
@@ -68,11 +76,12 @@ class Form extends React.Component {
   }
 
   render() {
-    const { classes, formData, onSubmit, onChange, onCancel, cancelText, submitText, ...rest } = this.props;
-    const { validation, id } = this.state;
+    const { classes, formData, onSubmit, onChange, onCancel, cancelText, submitText, showErrorList, ErrorList, ...rest } = this.props;
+    const { errors, id } = this.state;
+
     return (
       <Paper className={classes.root}>
-        <ValidationMessages validation={validation} />
+        { showErrorList ? <ErrorList errors={errors} /> : null }
         <div className={classes.field}>
           <FormField
             path={''}
@@ -81,7 +90,7 @@ class Form extends React.Component {
             className={classes.formfield}
             onChange={this.onChange}
             onSubmit={this.onSubmit}
-            validation={validation}
+            errors={errors}
             onMoveItemUp={this.onMoveItemUp}
             onMoveItemDown={this.onMoveItemDown}
             onDeleteItem={this.onDeleteItem}
@@ -95,3 +104,18 @@ class Form extends React.Component {
   }
 }
 export default withStyles(formStyles)(Form);
+
+Form.propTypes = {
+  schema: PropTypes.object.isRequired,
+  classes: PropTypes.object,
+  uiSchema: PropTypes.object,
+  formData: PropTypes.any,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  onCancel: PropTypes.func,
+  cancelText: PropTypes.string,
+  submitText: PropTypes.string,
+  showErrorList: PropTypes.bool,
+  showHelperError: PropTypes.bool,
+  ErrorList: PropTypes.func,
+};
