@@ -1,4 +1,4 @@
-# jsonschema-form-for-material-ui
+# [jsonschema-form-for-material-ui](https://www.npmjs.com/package/jsonschema-form-for-material-ui)
 
 A [Material UI](http://www.material-ui.com/) port of [react-jsonschema-form](https://github.com/mozilla-services/react-jsonschema-form).
 
@@ -12,6 +12,8 @@ This package:
 * Not pre-bundled
 * Better layout
 * Will be supported and updated
+
+I will be monitoring Mozilla's repo for changes: they plan on becoming ui-agnostic, and I will migrate this project into a wrapper of that one when that happens (which will be a major version bump)
 
 # Installation
 ```
