@@ -1,40 +1,73 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
+import ReactDOM from 'react-dom';
 import keys from 'lodash/keys';
 import { withStyles } from '@material-ui/core/styles';
 import filter from 'lodash/filter';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ErrorOutline from '@material-ui/icons/ErrorOutline';
 
 const errorsStyles = {
   errorList: {
-    backgroundColor: "#e9e9e9",
-    color: "#f44336",
-    listStyle:"none"
+    backgroundColor: '#ffa3a3',
+    borderColor: '#ebccd1',
+    color: '#f44336',
+    clear: 'both',
+  },
+  panelHeading: {
+    color: '#a94442',
+    backgroundColor: '#f98989',
+    borderColor: '#ebccd1',
   },
 };
 
-const Error = ({ errors, classes }) => (
-  <Typography variant="p">
-    {errors.message}
-  </Typography>
+const Error = ({ errors }) => (
+  <ListItemText primary={errors.message} />
 );
 
-const Errors = ({ errors, classes }) => (
-  <li className={classes.ul} >
-    {errors.map((v, idx) => (<Error key={idx} errors={v} classes={classes} />)) // eslint-disable-line react/no-array-index-key,max-len
+const Errors = ({ errors, anchor, classes }) => (
+  <ListItem
+    button
+    onClick={() => {
+      document.getElementById(anchor).focus();
+    }}
+  >
+    {
+      errors.map((v, idx) => (<Error key={idx} errors={v} classes={classes} />)) // eslint-disable-line react/no-array-index-key,max-len
     }
-  </li>
+  </ListItem>
 );
 
-const ErrorList = ({ errors, classes }) => (
-  <ul className={classes.errorList}>
-    {errors && filter(keys(errors), (k) => {
-      const v = errors[k];
-      return v && v.length > 0;
-    }).map(v => (
-      <Errors key={v} errors={errors[v]} classes={classes} />
-    ))
+const ErrorList = ({ errors, field, classes }) => (
+  <div className={classes.errorList}>
+    {
+      Object.keys(errors).length > 0 || asErrors(errors) ? (
+        <List
+          component='nav'
+          subheader={(
+            <ListItem className={classes.panelHeading}>
+              <ListItemIcon>
+                <ErrorOutline color='error' />
+              </ListItemIcon>
+              <ListItemText primary='ERRORS' color='error' />
+            </ListItem>
+          )}
+        >
+          {
+            filter(keys(errors), (k) => {
+              const v = errors[k];
+              return v && v.length > 0;
+            }).map(v => (
+              <Errors key={v} errors={errors[v]} anchor={`${field}_${v}`} classes={classes} />
+            ))
+          }
+        </List>
+      ) : null
     }
-  </ul>
+  </div>
+
 );
 
 export default withStyles(errorsStyles)(ErrorList);
