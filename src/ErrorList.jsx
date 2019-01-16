@@ -31,7 +31,7 @@ const Errors = ({ errors, anchor, classes }) => (
   <ListItem
     button
     onClick={() => {
-      document.getElementById(anchor).focus();
+      document.getElementById(anchor).focus(); // eslint-disable-line
     }}
   >
     {
@@ -43,7 +43,7 @@ const Errors = ({ errors, anchor, classes }) => (
 const ErrorList = ({ errors, field, classes }) => (
   <div className={classes.errorList}>
     {
-      Object.keys(errors).length > 0 || asErrors(errors) ? (
+      Object.keys(errors).length > 0  ? (
         <List
           component='nav'
           subheader={(
