@@ -15,7 +15,7 @@ export const RawFieldSetContent = (props) => {
   if (type === 'array') {
     return <FieldSetArray {...props} />;
   }
-  else if (type === 'object') {
+  if (type === 'object') {
     return <FieldSetObject {...props} />;
   }
   return null;
@@ -31,8 +31,8 @@ export class RawFieldSet extends React.Component {
     const { className, path, classes, schema = {} } = this.props;
     return (
       <fieldset className={classNames(className, classes.root, { [classes.listItem]: endsWith(path, ']') })}>
-        {schema.title &&
-          <InputLabel>{schema.title}</InputLabel>
+        {schema.title
+          && <InputLabel>{schema.title}</InputLabel>
         }
         <FieldSetContent path={path} {...this.props} />
       </fieldset>

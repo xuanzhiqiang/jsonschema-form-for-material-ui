@@ -5,14 +5,13 @@ import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 
 import fieldStyles from './field-styles';
 import PopoverInfo from './components/PopoverInfo';
 
 // for unit testing only
 export class RawConfiguredField extends React.Component {
-
   shouldComponentUpdate = (nextProps, nextState) => {
     if (this.props.data !== nextProps.data) return true;
     if (this.state.anchorEl !== nextState.anchorEl) return true;
@@ -21,47 +20,54 @@ export class RawConfiguredField extends React.Component {
 
   formatErrorMessages = () => {
     const { errors } = this.props;
-    return errors.map( error => error.message).toString();
+    return errors.map(error => error.message).toString();
   }
 
   render() {
     const {
       classes = {},
-        data,
-        type,
-        descriptionText,
-        helpT = helpText,
-        showHelperError,
-        Component = Input,
-        LabelComponent,
-        labelComponentProps = {},
-        title,
-        className,
-        componentProps = {},
-        id,
-        errors
+      data,
+      type,
+      descriptionText,
+      helpT = helpText,
+      showHelperError,
+      Component = Input,
+      LabelComponent,
+      labelComponentProps,
+      title,
+      className,
+      componentProps = {},
+      id,
+      errors,
     } = this.props;
     const helpText = (showHelperError && errors && errors.length > 0) ? this.formatErrorMessages() : helpT;
     return (
       <FormControl error={errors && errors.length > 0} className={classNames(classes.root, { [classes.withLabel]: LabelComponent })}>
-        {LabelComponent && title &&
-          (<LabelComponent className={classes.label} {...labelComponentProps}>
-              {title}
-              {descriptionText ?
+        {LabelComponent && title
+          && (
+          <LabelComponent className={classes.label} {...labelComponentProps}>
+            {title}
+            {descriptionText
+              ? (
                 <PopoverInfo
                   descriptionText={descriptionText}
                   classes={classes}
-                /> : null}
-          </LabelComponent>)
+                />
+              ) : null}
+          </LabelComponent>
+          )
         }
-        {descriptionText && !(LabelComponent && title) ?
-          <PopoverInfo
-            descriptionText={descriptionText}
-            classes={classes}
-          /> : null}
+        {descriptionText && !(LabelComponent && title)
+          ? (
+            <PopoverInfo
+              descriptionText={descriptionText}
+              classes={classes}
+            />
+          ) : null}
         <Component
           className={className && classes[className]}
           value={data}
+          htmlId={labelComponentProps.htmlFor}
           type={type}
           {...componentProps}
         />

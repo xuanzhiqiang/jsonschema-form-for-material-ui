@@ -1,6 +1,5 @@
 export default theme => ({
   root: {
-    'padding': theme.spacing.unit,
     '&$withLabel': {
       marginTop: theme.spacing.unit * 3,
     },
@@ -22,8 +21,5 @@ export default theme => ({
     alignItems: 'center',
   },
   // infoButton: {},
-  infoPaper: {
-    padding: theme.spacing.unit,
-  },
   // infoPopover: {}
 });

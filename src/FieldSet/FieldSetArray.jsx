@@ -15,7 +15,7 @@ export const RawFieldSetArray = (props) => {
     startIdx = 0, className, classes,
     schema = {}, uiSchema = {}, data, path, onMoveItemUp, onMoveItemDown, onDeleteItem, ...rest
   } = props;
-  
+
   return (
     <div className={classes.root}>
       {!isArray(schema.items) && !schema.uniqueItems && (
@@ -46,30 +46,35 @@ export const RawFieldSetArray = (props) => {
       )}
       {isArray(schema.items) && (data || []).map((d, idx) => {
         if (idx < schema.items.length) {
-          return (<FormField
-            key={`${path}[${idx}]` // eslint-disable-line react/no-array-index-key
+          return (
+            <FormField
+              key={`${path}[${idx}]` // eslint-disable-line react/no-array-index-key
             }
-            path={`${path}[${startIdx + idx}]`}
-            required={schema.required}
-            schema={schema.items[idx]}
-            data={d}
-            uiSchema={(uiSchema.items || [])[idx]}
-            {...rest}
-          />);
+              path={`${path}[${startIdx + idx}]`}
+              required={schema.required}
+              schema={schema.items[idx]}
+              data={d}
+              uiSchema={(uiSchema.items || [])[idx]}
+              {...rest}
+            />
+          );
         }
         return null;
       })}
-      {(!isArray(schema.items) && schema.uniqueItems && schema.items.enum) && schema.items.enum.map(d => (<FormField
-        key={`${path}[${d}]` // eslint-disable-line react/no-array-index-key
+      {(!isArray(schema.items) && schema.uniqueItems && schema.items.enum) && schema.items.enum.map(d => (
+        <FormField
+          key={`${path}[${d}]` // eslint-disable-line react/no-array-index-key
         }
-        path={`${path}`}
-        required={schema.required}
-        schema={{ ...schema.items, title: d }}
-        data={includes(data, d)}
-        uiSchema={uiSchema}
-        {...rest}
-      />))}
-      {schema.additionalItems &&
+          path={`${path}`}
+          required={schema.required}
+          schema={{ ...schema.items, title: d }}
+          data={includes(data, d)}
+          uiSchema={uiSchema}
+          {...rest}
+        />
+      ))}
+      {schema.additionalItems
+        && (
         <RawFieldSetArray
           classes={classes}
           path={path}
@@ -83,6 +88,7 @@ export const RawFieldSetArray = (props) => {
           onDeleteItem={onDeleteItem}
           {...rest}
         />
+        )
       }
     </div>
   );
