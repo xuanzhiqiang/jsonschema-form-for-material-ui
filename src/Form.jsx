@@ -14,8 +14,8 @@ import FormButtons from './FormButtons';
 class Form extends React.Component {
   static defaultProps = {
     uiSchema: {},
-    showErrorList: true,
-    showHelperError: false,
+    showErrorList: false,
+    showHelperError: true,
     ErrorList: DefaultErrorList,
   };
 
