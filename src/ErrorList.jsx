@@ -43,7 +43,7 @@ const Errors = ({ errors, anchor, classes }) => (
 const ErrorList = ({ errors, field, classes }) => (
   <div className={classes.errorList}>
     {
-      Object.keys(errors).length > 0  ? (
+      Object.keys(errors).length > 0 (
         <List
           component='nav'
           subheader={(
