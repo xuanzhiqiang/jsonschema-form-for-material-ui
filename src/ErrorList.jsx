@@ -40,34 +40,44 @@ const Errors = ({ errors, anchor, classes }) => (
   </ListItem>
 );
 
+const hasErrors = (errors) => {
+  let errorsFlag = false;
+
+  Object.values(errors).forEach((error) => {
+    if (error.length !== 0) {
+      errorsFlag = true;
+    }
+  });
+  return errorsFlag;
+};
+
 const ErrorList = ({ errors, field, classes }) => (
   <div className={classes.errorList}>
     {
-      Object.keys(errors).length > 0 (
-        <List
-          component='nav'
-          subheader={(
-            <ListItem className={classes.panelHeading}>
-              <ListItemIcon>
-                <ErrorOutline color='error' />
-              </ListItemIcon>
-              <ListItemText primary='ERRORS' color='error' />
-            </ListItem>
-          )}
-        >
-          {
-            filter(keys(errors), (k) => {
-              const v = errors[k];
-              return v && v.length > 0;
-            }).map(v => (
-              <Errors key={v} errors={errors[v]} anchor={`${field}_${v}`} classes={classes} />
-            ))
-          }
-        </List>
-      ) : null
-    }
+        hasErrors(errors) ? (
+          <List
+            component='nav'
+            subheader={(
+              <ListItem className={classes.panelHeading}>
+                <ListItemIcon>
+                  <ErrorOutline color='error' />
+                </ListItemIcon>
+                <ListItemText primary='ERRORS' color='error' />
+              </ListItem>
+            )}
+          >
+            {
+              filter(keys(errors), (k) => {
+                const v = errors[k];
+                return v && v.length > 0;
+              }).map(v => (
+                <Errors key={v} errors={errors[v]} anchor={`${field}_${v}`} classes={classes} />
+              ))
+            }
+          </List>
+        ) : null
+      }
   </div>
-
 );
 
 export default withStyles(errorsStyles)(ErrorList);
