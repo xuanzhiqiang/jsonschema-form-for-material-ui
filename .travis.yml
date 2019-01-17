@@ -3,10 +3,11 @@ sudo: false
 node_js:
   - "10"
 install:
-  - npm i
+  - npm ci
+# Keep the npm cache around to speed up installs
 cache:
   directories:
-    - "node_modules"
+  - "$HOME/.npm"
 script:
   - npm run lint
   - npm run test
