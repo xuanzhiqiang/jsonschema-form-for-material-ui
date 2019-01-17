@@ -18,7 +18,7 @@ gulp.task('build', () =>
 gulp.task(
   'test',
   gulp.series(['build'], () =>
-    gulp.src('src/**/*.spec.js', { read: false }).pipe(
+    gulp.src('src/**/*.spec.{js,jsx}', { read: false }).pipe(
       mocha({
         require: path.resolve(__dirname, 'mocha.setup.js'),
         reporter: 'mochawesome',

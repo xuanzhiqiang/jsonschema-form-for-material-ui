@@ -1,8 +1,9 @@
 import React from 'react';
+
 import configureComponent from './configure';
 import ConfiguredField from './ConfiguredField';
 
-export default (props) => {
+export default props => {
   const { path, id, schema, data, uiSchema, errors, showHelperError } = props;
   const { type } = schema;
   const htmlId = `${id}_${path}`;

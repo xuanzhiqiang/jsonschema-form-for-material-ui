@@ -2,3 +2,8 @@ JavaScript: # Enable language
   beautifiers: ["Prettier"] # Enable beautifiers
   quotes: "single"
   end_with_semicolon: true
+
+javascriptreact: # Enable language
+  beautifiers: ["Prettier"] # Enable beautifiers
+  quotes: "single"
+  end_with_semicolon: true

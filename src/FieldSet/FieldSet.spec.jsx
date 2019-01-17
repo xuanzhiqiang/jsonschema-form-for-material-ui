@@ -9,19 +9,19 @@ import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import IconButton from '@material-ui/core/IconButton';
-import {
-  RawFieldSet,
-  RawFieldSetObject,
-  FieldSetArray, RawFieldSetArray,
-  FieldSetContent,
-  ReorderableFormField, RawReorderableFormField,
-  ReorderControls, RawReorderControls,
-} from './FieldSet';
+import { RawFieldSet, FieldSetContent } from './FieldSet';
+import { RawFieldSetObject } from './FieldSetObject';
+import { RawFieldSetArray } from './FieldSetArray';
+import ReorderControls, { RawReorderControls } from './ReorderControls';
+import ReorderableFormField, {
+  RawReorderableFormField
+} from './ReorderableFormField';
+
 import FormField from '../FormField';
 
 const classes = {
   root: 'rootClassName',
-  row: 'rowClassName',
+  row: 'rowClassName'
 };
 
 chai.use(chaiEnzyme());
@@ -35,7 +35,9 @@ describe('FieldSet', () => {
       const data = {};
 
       // act
-      const wrapper = shallow(<RawFieldSet classes={classes} schema={schema} data={data} />);
+      const wrapper = shallow(
+        <RawFieldSet classes={classes} schema={schema} data={data} />
+      );
 
       // check
       expect(wrapper).to.have.length(1);
@@ -52,48 +54,61 @@ describe('FieldSet', () => {
         type: 'object',
         properties: {
           name: {
-            'type': 'string',
-            'title': 'Name',
-          },
-        },
+            type: 'string',
+            title: 'Name'
+          }
+        }
       };
       const data = { name: 'Bob' };
 
       // act
-      const wrapper = shallow(<RawFieldSetObject classes={classes} schema={schema} data={data} />);
+      const wrapper = shallow(
+        <RawFieldSetObject classes={classes} schema={schema} data={data} />
+      );
 
       // check
       expect(wrapper).to.have.length(1);
-      expect(wrapper).to.have.prop('className').not.match(/rowClassName/);
+      expect(wrapper)
+        .to.have.prop('className')
+        .not.match(/rowClassName/);
       const ffComp = wrapper.find(FormField);
       expect(ffComp).to.have.length(1);
       expect(ffComp).to.have.prop('path', 'name');
       expect(ffComp).to.have.prop('data', data.name);
-      expect(ffComp).to.have.prop('objectData').deep.equal(data);
+      expect(ffComp)
+        .to.have.prop('objectData')
+        .deep.equal(data);
     });
     it('respects orientation hint', () => {
       const schema = {
         type: 'object',
         properties: {
           name: {
-            'type': 'string',
-            'title': 'Name',
-          },
-        },
+            type: 'string',
+            title: 'Name'
+          }
+        }
       };
       const uiSchema = {
-        'ui:orientation': 'row',
+        'ui:orientation': 'row'
       };
       const data = { name: 'Bob' };
 
       // act
       const wrapper = shallow(
-        <RawFieldSetObject classes={classes} schema={schema} data={data} uiSchema={uiSchema} />,
+        <RawFieldSetObject
+          classes={classes}
+          schema={schema}
+          data={data}
+          uiSchema={uiSchema}
+        />
       );
 
       // check
       expect(wrapper).to.have.length(1);
-      expect(wrapper).to.have.prop('className').match(/rowClassName/);
+      expect(wrapper)
+        .to.have.prop('className')
+        .match(/rowClassName/);
       const ffComp = wrapper.find(FormField);
       expect(ffComp).to.have.length(1);
       expect(ffComp).to.have.prop('path', 'name');
@@ -109,21 +124,27 @@ describe('FieldSet', () => {
         type: 'array',
         title: 'My list',
         items: {
-          'type': 'string',
-          'title': 'Name',
-          'default': defaultValue,
-        },
+          type: 'string',
+          title: 'Name',
+          default: defaultValue
+        }
       };
       const onMoveItemUp = sinon.stub();
       const onMoveItemDown = sinon.stub();
       const onDeleteItem = sinon.stub();
-      forEach([0, 1], i => onMoveItemUp.withArgs(path, startIdx + i).returns(`moveUp${i}`));
-      forEach([0, 1], i => onMoveItemDown.withArgs(path, startIdx + i).returns(`moveDown${i}`));
-      forEach([0, 1], i => onDeleteItem.withArgs(path, startIdx + i).returns(`deleteItem${i}`));
+      forEach([0, 1], i =>
+        onMoveItemUp.withArgs(path, startIdx + i).returns(`moveUp${i}`)
+      );
+      forEach([0, 1], i =>
+        onMoveItemDown.withArgs(path, startIdx + i).returns(`moveDown${i}`)
+      );
+      forEach([0, 1], i =>
+        onDeleteItem.withArgs(path, startIdx + i).returns(`deleteItem${i}`)
+      );
       const uiSchema = {
         items: {
-          'ui:widget': 'textarea',
-        },
+          'ui:widget': 'textarea'
+        }
       };
       const data = ['Bob', 'Harry'];
       const onAddItem = sinon.spy();
@@ -141,14 +162,14 @@ describe('FieldSet', () => {
           classes={classes}
           schema={schema}
           data={data}
-        />,
+        />
       );
 
       // check
       expect(wrapper).to.have.length(1);
       const ffComp = wrapper.find(ReorderableFormField);
       expect(ffComp).to.have.length(2);
-      forEach([0, 1], (i) => {
+      forEach([0, 1], i => {
         expect(ffComp.at(i)).to.have.prop('path', `names[${i + startIdx}]`);
         expect(ffComp.at(i)).to.have.prop('data', data[i]);
         expect(ffComp.at(i)).to.have.prop('schema', schema.items);
@@ -171,26 +192,38 @@ describe('FieldSet', () => {
       const schema = {
         type: 'array',
         title: 'My list',
-        items: [{
-          'type': 'string',
-          'title': 'Name',
-        }, {
-          'type': 'boolean',
-          'title': 'Name',
-        }],
+        items: [
+          {
+            type: 'string',
+            title: 'Name'
+          },
+          {
+            type: 'boolean',
+            title: 'Name'
+          }
+        ]
       };
       const uiSchema = {
-        items: [{
-          'ui:widget': 'textarea',
-        }, {
-          'ui:widget': 'checkbox',
-        }],
+        items: [
+          {
+            'ui:widget': 'textarea'
+          },
+          {
+            'ui:widget': 'checkbox'
+          }
+        ]
       };
       const data = ['Bob', false];
 
       // act
       const wrapper = shallow(
-        <RawFieldSetArray uiSchema={uiSchema} path={path} classes={classes} schema={schema} data={data} />,
+        <RawFieldSetArray
+          uiSchema={uiSchema}
+          path={path}
+          classes={classes}
+          schema={schema}
+          data={data}
+        />
       );
 
       // check
@@ -199,7 +232,7 @@ describe('FieldSet', () => {
       const rffComp = wrapper.find(ReorderableFormField);
       expect(ffComp).to.have.length(2);
       expect(rffComp).to.have.length(0);
-      forEach([0, 1], (idx) => {
+      forEach([0, 1], idx => {
         expect(ffComp.at(idx)).to.have.prop('path', `names[${idx}]`);
         expect(ffComp.at(idx)).to.have.prop('data', data[idx]);
         expect(ffComp.at(idx)).to.have.prop('schema', schema.items[idx]);
@@ -215,27 +248,33 @@ describe('FieldSet', () => {
       const schema = {
         type: 'array',
         title: 'My list',
-        items: [{
-          'type': 'string',
-          'title': 'Name',
-        }, {
-          'type': 'boolean',
-          'title': 'Name',
-        }],
+        items: [
+          {
+            type: 'string',
+            title: 'Name'
+          },
+          {
+            type: 'boolean',
+            title: 'Name'
+          }
+        ],
         additionalItems: {
-          'type': 'string',
-          'title': 'Name',
-        },
+          type: 'string',
+          title: 'Name'
+        }
       };
       const uiSchema = {
-        items: [{
-          'ui:widget': 'textarea',
-        }, {
-          'ui:widget': 'checkbox',
-        }],
+        items: [
+          {
+            'ui:widget': 'textarea'
+          },
+          {
+            'ui:widget': 'checkbox'
+          }
+        ],
         additionalItems: {
-          'ui:title': 'Children',
-        },
+          'ui:title': 'Children'
+        }
       };
       const data = ['Bob', false, 'Harry', 'Susan'];
 
@@ -250,14 +289,14 @@ describe('FieldSet', () => {
           classes={classes}
           schema={schema}
           data={data}
-        />,
+        />
       );
 
       // check
       expect(wrapper).to.have.length(1);
       const ffComp = wrapper.find(FormField);
       expect(ffComp).to.have.length(2);
-      forEach([0, 1], (i) => {
+      forEach([0, 1], i => {
         expect(ffComp.at(i)).to.have.prop('path', `names[${i}]`);
         expect(ffComp.at(i)).to.have.prop('data', data[i]);
         expect(ffComp.at(i)).to.have.prop('schema', schema.items[i]);
@@ -266,11 +305,15 @@ describe('FieldSet', () => {
         expect(ffComp.at(i)).to.not.have.prop('onMoveItemDown');
         expect(ffComp.at(i)).to.not.have.prop('onDeleteItem');
       });
-      const fsArrayComp = wrapper.find(FieldSetArray);
+      const fsArrayComp = wrapper.find(RawFieldSetArray);
       expect(fsArrayComp).to.be.present();
       expect(fsArrayComp).to.have.prop('path', path);
-      expect(fsArrayComp).to.have.prop('data').deep.equal(['Harry', 'Susan']);
-      expect(fsArrayComp).to.have.prop('schema').deep.equal({ type: 'array', items: schema.additionalItems });
+      expect(fsArrayComp)
+        .to.have.prop('data')
+        .deep.equal(['Harry', 'Susan']);
+      expect(fsArrayComp)
+        .to.have.prop('schema')
+        .deep.equal({ type: 'array', items: schema.additionalItems });
       expect(fsArrayComp).to.have.prop('uiSchema', uiSchema.additionalItems);
       expect(fsArrayComp).to.have.prop('startIdx', schema.items.length);
       expect(fsArrayComp).to.have.prop('onMoveItemUp', onMoveItemUp);
@@ -292,7 +335,7 @@ describe('FieldSet', () => {
           onDeleteItem={onDeleteItem}
           onMoveItemUp={onMoveItemUp}
           classes={classes}
-        />,
+        />
       );
 
       // check
@@ -309,7 +352,7 @@ describe('FieldSet', () => {
     it('ReorderControls - first', () => {
       // act
       const wrapper = shallow(
-        <RawReorderControls first last={false} classes={classes} />,
+        <RawReorderControls first last={false} classes={classes} />
       );
 
       // check
@@ -323,7 +366,7 @@ describe('FieldSet', () => {
     it('ReorderControls - last', () => {
       // act
       const wrapper = shallow(
-        <RawReorderControls first={false} last classes={classes} />,
+        <RawReorderControls first={false} last classes={classes} />
       );
 
       // check
@@ -347,7 +390,7 @@ describe('FieldSet', () => {
           first={first}
           last={last}
           classes={classes}
-        />,
+        />
       );
 
       // check

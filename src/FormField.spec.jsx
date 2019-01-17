@@ -7,12 +7,12 @@ import chaiEnzyme from 'chai-enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import { RawFormField as FormField } from './FormField';
+import FormField, { RawFormField } from './FormField';
 import Field from './fields';
 import FieldSet from './FieldSet';
 
 const classes = {
-  field: 'fieldClassName',
+  root: 'fieldClassName'
 };
 
 chai.use(chaiEnzyme());
@@ -24,24 +24,30 @@ describe('FormField', () => {
     const path = 'name';
     const onChange = sinon.stub();
     const schema = {
-      'type': 'string',
-      'title': 'First Name',
+      type: 'string',
+      title: 'First Name'
     };
-    const uiSchema = {
-    };
+    const uiSchema = {};
     const data = 'Bob';
     onChange.returns('onChangeFunc');
 
     // act
     const wrapper = shallow(
-      <FormField path={path} classes={classes} schema={schema} uiSchema={uiSchema} data={data} onChange={onChange} />,
+      <RawFormField
+        path={path}
+        classes={classes}
+        schema={schema}
+        uiSchema={uiSchema}
+        data={data}
+        onChange={onChange}
+      />
     );
 
     // check
     expect(wrapper).to.be.present();
     const ffComp = wrapper.find(Field);
     expect(ffComp).to.have.length(1);
-    expect(ffComp).to.have.prop('className', classes.field);
+    expect(ffComp).to.have.prop('className', classes.root);
     expect(ffComp).to.have.prop('path', path);
     expect(ffComp).to.have.prop('schema', schema);
     expect(ffComp).to.have.prop('data', data);
@@ -52,14 +58,14 @@ describe('FormField', () => {
   it('spreads additional properties to Field', () => {
     const schema = {
       name: {
-        'type': 'string',
-      },
+        type: 'string'
+      }
     };
     const myProp = 'blah';
 
     // act
     const wrapper = shallow(
-      <FormField classes={classes} schema={schema} myProp={myProp} />,
+      <RawFormField classes={classes} schema={schema} myProp={myProp} />
     );
 
     // check
@@ -71,30 +77,37 @@ describe('FormField', () => {
     const onChange = sinon.stub();
     const path = 'name';
     const schema = {
-      'type': 'object',
-      'properties': {
+      type: 'object',
+      properties: {
         firstName: {
           type: 'string',
-          title: 'First Name',
+          title: 'First Name'
         },
         surname: {
           type: 'string',
-          title: 'Surname',
-        },
-      },
+          title: 'Surname'
+        }
+      }
     };
     const data = {
       firstName: 'Bob',
-      surname: 'Hope',
+      surname: 'Hope'
     };
     const uiSchema = {
       firstName: {},
-      surname: {},
+      surname: {}
     };
 
     // act
     const wrapper = shallow(
-      <FormField classes={classes} uiSchema={uiSchema} path={path} schema={schema} data={data} onChange={onChange} />,
+      <RawFormField
+        classes={classes}
+        uiSchema={uiSchema}
+        path={path}
+        schema={schema}
+        data={data}
+        onChange={onChange}
+      />
     );
 
     // check
