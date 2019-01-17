@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import { generate } from 'shortid';
 import { withStyles } from '@material-ui/core/styles';
@@ -8,7 +8,7 @@ import formStyles from './form-styles';
 import FormField from './FormField';
 import updateFormData, { addListItem, removeListItem, moveListItem } from './helpers/update-form-data';
 import getValidationResult from './helpers/validation';
-import { default as DefaultErrorList } from "./ErrorList";
+import { default as DefaultErrorList } from './ErrorList';
 import FormButtons from './FormButtons';
 
 class Form extends React.Component {
@@ -29,7 +29,8 @@ class Form extends React.Component {
     let errors;
     if (!isEqual(nextProps.schema, this.props.schema)) {
       errors = {};
-    } else {
+    }
+    else {
       errors = getValidationResult(this.props.schema, nextProps.formData);
     }
     this.setState({
@@ -78,10 +79,9 @@ class Form extends React.Component {
   render() {
     const { classes, formData, onSubmit, onChange, onCancel, cancelText, submitText, showErrorList, ErrorList, ...rest } = this.props;
     const { errors, id } = this.state;
-
     return (
       <Paper className={classes.root}>
-        { showErrorList ? <ErrorList errors={errors} /> : null }
+        { showErrorList ? <ErrorList errors={errors} field={id} /> : null }
         <div className={classes.field}>
           <FormField
             path={''}
@@ -91,14 +91,14 @@ class Form extends React.Component {
             onChange={this.onChange}
             onSubmit={this.onSubmit}
             errors={errors}
-            onMoveItemUp={this.onMoveItemUp}
+            onMoveItemUp={this.onMoveItemUp}  
             onMoveItemDown={this.onMoveItemDown}
             onDeleteItem={this.onDeleteItem}
             onAddItem={this.onAddItem}
             {...rest}
           />
         </div>
-        <FormButtons onSubmit={this.onSubmit} onCancel={onCancel} classes={classes} cancelText={cancelText} submitText={submitText}  />
+        <FormButtons onSubmit={this.onSubmit} onCancel={onCancel} classes={classes} cancelText={cancelText} submitText={submitText} />
       </Paper>
     );
   }

@@ -6,10 +6,11 @@ export class RawFormButtons extends React.Component {
   shouldComponentUpdate = () => false
 
   render() {
-    const { classes, onCancel, onSubmit, cancelText='Cancel', submitText='Submit' } = this.props;
+    const { classes, onCancel, onSubmit, cancelText = 'Cancel', submitText = 'Submit' } = this.props;
     return (onCancel || onSubmit) && (
       <div className={classes.formButtons}>
-        {onCancel &&
+        {onCancel
+          && (
           <Button
             className={classNames(classes.cancel, classes.button)}
             variant={'flat'}
@@ -17,8 +18,10 @@ export class RawFormButtons extends React.Component {
           >
             {cancelText}
           </Button>
+          )
         }
-        {onSubmit &&
+        {onSubmit
+          && (
           <Button
             className={classNames(classes.submit, classes.button)}
             variant={'raised'}
@@ -27,6 +30,7 @@ export class RawFormButtons extends React.Component {
           >
             {submitText}
           </Button>
+          )
         }
       </div>
     );

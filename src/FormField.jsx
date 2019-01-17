@@ -21,7 +21,8 @@ export class RawFormField extends React.Component {
           data={data}
           uiSchema={uiSchema}
           onChange={onChange}
-          {...rest} />
+          {...rest}
+        />
       );
     }
     return (

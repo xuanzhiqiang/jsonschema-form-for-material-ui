@@ -8,13 +8,11 @@ function ErrorListTemplate({ errors }) {
   return (
     <ul>
       {
-        Object.values(errors).map(errorArray => {
-          return errorArray.map((error, index) => (
-              <li key={index} style={{ color: "blue" }}>
-              {`Customized errors (${error.message})`}
-            </li>
-          ));
-        })
+        Object.values(errors).map(errorArray => errorArray.map((error, index) => (
+          <li key={index} style={{ color: 'blue' }}>
+            {`Customized errors (${error.message})`}
+          </li>
+        )))
       }
     </ul>
   );
@@ -28,5 +26,5 @@ export default ({
   formData,
   showErrorList: true,
   showHelperError: false,
-  ErrorList: ErrorListTemplate
+  ErrorList: ErrorListTemplate,
 });
