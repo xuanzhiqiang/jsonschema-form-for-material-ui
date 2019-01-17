@@ -16,9 +16,7 @@ describe('getLabelComponent', () => {
   beforeEach(() => {
     InputLabelSpy = sinon.spy();
     getLabelComponent = proxyquire('./get-label-component', {
-      '@material-ui/core/Input': {
-        InputLabel: InputLabelSpy,
-      },
+      '@material-ui/core/InputLabel': { default: InputLabelSpy }
     }).default;
   });
   it('returns InputLabel by default', () => {
