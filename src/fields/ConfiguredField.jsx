@@ -5,10 +5,15 @@ import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
+
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
+// import Typography from '@material-ui/core/Typography';
 // import Typography from '@material-ui/core/Typography';
 
 import fieldStyles from './field-styles';
-import PopoverInfo from './components/PopoverInfo';
+// import PopoverInfo from './components/PopoverInfo'; removed for fix animation problems
 
 // for unit testing only
 export class RawConfiguredField extends React.Component {
@@ -49,20 +54,18 @@ export class RawConfiguredField extends React.Component {
             {title}
             {descriptionText
               ? (
-                <PopoverInfo
-                  descriptionText={descriptionText}
-                  classes={classes}
-                />
+                <Tooltip title={descriptionText} placement='top-start'>
+                  <IconButton><InfoIcon /></IconButton>
+                </Tooltip>
               ) : null}
           </LabelComponent>
           )
         }
         {descriptionText && !(LabelComponent && title)
           ? (
-            <PopoverInfo
-              descriptionText={descriptionText}
-              classes={classes}
-            />
+            <Tooltip title={descriptionText} placement='top-start'>
+              <IconButton><InfoIcon /></IconButton>
+            </Tooltip>
           ) : null}
         <Component
           className={className && classes[className]}

@@ -16,6 +16,7 @@ export default theme => ({
   },
   withLabel: {},
   label: {
+    height: '1rem',
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
