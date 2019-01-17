@@ -26,7 +26,7 @@ export class RawConfiguredField extends React.Component {
   formatErrorMessages = () => {
     const { errors } = this.props;
     return errors.map(error => error.message).toString();
-  }
+  };
 
   render() {
     const {
@@ -34,39 +34,47 @@ export class RawConfiguredField extends React.Component {
       data,
       type,
       descriptionText,
-      helpT = helpText,
+      helpText: helpT,
       showHelperError,
       Component = Input,
       LabelComponent,
-      labelComponentProps,
+      labelComponentProps = {},
       title,
       className,
       componentProps = {},
       id,
-      errors,
+      errors
     } = this.props;
-    const helpText = (showHelperError && errors && errors.length > 0) ? this.formatErrorMessages() : helpT;
+    const helpText =
+      showHelperError && errors && errors.length > 0
+        ? this.formatErrorMessages()
+        : helpT;
     return (
-      <FormControl error={errors && errors.length > 0} className={classNames(classes.root, { [classes.withLabel]: LabelComponent })}>
-        {LabelComponent && title
-          && (
+      <FormControl
+        error={errors && errors.length > 0}
+        className={classNames(classes.root, {
+          [classes.withLabel]: LabelComponent
+        })}
+      >
+        {LabelComponent && title && (
           <LabelComponent className={classes.label} {...labelComponentProps}>
             {title}
-            {descriptionText
-              ? (
-                <Tooltip title={descriptionText} placement='top-start'>
-                  <IconButton><InfoIcon /></IconButton>
-                </Tooltip>
-              ) : null}
+            {descriptionText ? (
+              <Tooltip title={descriptionText} placement="top-start">
+                <IconButton>
+                  <InfoIcon />
+                </IconButton>
+              </Tooltip>
+            ) : null}
           </LabelComponent>
-          )
-        }
-        {descriptionText && !(LabelComponent && title)
-          ? (
-            <Tooltip title={descriptionText} placement='top-start'>
-              <IconButton><InfoIcon /></IconButton>
-            </Tooltip>
-          ) : null}
+        )}
+        {descriptionText && !(LabelComponent && title) ? (
+          <Tooltip title={descriptionText} placement="top-start">
+            <IconButton>
+              <InfoIcon />
+            </IconButton>
+          </Tooltip>
+        ) : null}
         <Component
           className={className && classes[className]}
           value={data}

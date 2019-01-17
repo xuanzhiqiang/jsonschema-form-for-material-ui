@@ -9,6 +9,7 @@ module.exports = {
       }
     ],
     'react/prop-types': 0,
+    'react/destructuring-assignment': 1,
     'no-underscore-dangle': 0,
     'import/imports-first': ['error', 'absolute-first'],
     'import/newline-after-import': 'error'
