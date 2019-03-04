@@ -6,18 +6,21 @@ import blue from '@material-ui/core/colors/lightBlue';
 const theme = {
   palette: {
     primary: {
-      main: blue[600],
+      main: blue[600]
     },
     secondary: teal,
-    error: red,
+    error: red
+  },
+  typography: {
+    useNextVariants: true
   },
   overrides: {
     MuiInput: {
       root: {
-        fontSize: 'inherit',
-      },
-    },
-  },
+        fontSize: 'inherit'
+      }
+    }
+  }
 };
 
 export default createMuiTheme(theme);

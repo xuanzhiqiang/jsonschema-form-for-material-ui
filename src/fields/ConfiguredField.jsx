@@ -9,8 +9,6 @@ import Input from '@material-ui/core/Input';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
-// import Typography from '@material-ui/core/Typography';
-// import Typography from '@material-ui/core/Typography';
 
 import fieldStyles from './field-styles';
 // import PopoverInfo from './components/PopoverInfo'; removed for fix animation problems
@@ -77,8 +75,8 @@ export class RawConfiguredField extends React.Component {
         ) : null}
         <Component
           className={className && classes[className]}
-          value={data}
-          htmlId={labelComponentProps.htmlFor}
+          value={data || ''}
+          id={labelComponentProps.htmlFor}
           type={type}
           {...componentProps}
         />

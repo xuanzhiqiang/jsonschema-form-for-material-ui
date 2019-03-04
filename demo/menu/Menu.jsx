@@ -11,7 +11,7 @@ import menuStyles from './menu-styles';
 
 class RawMenuAppBar extends React.Component {
   state = {
-    drawerOpen: false,
+    drawerOpen: false
   };
 
   toggleDrawer = visible => () => {
@@ -22,23 +22,29 @@ class RawMenuAppBar extends React.Component {
     const { classes, onSelectMenuItem } = this.props;
     const { drawerOpen } = this.state;
     return (
-      <AppBar position={'static'} className={classes.toolbar}>
+      <AppBar position="static" className={classes.toolbar}>
         <Toolbar>
           <Hidden only={['lg', 'xl']}>
             <IconButton
               className={classes.menuButton}
-              color='inherit'
-              aria-label='Menu'
+              color="inherit"
+              aria-label="Menu"
               onClick={this.toggleDrawer(true)}
             >
               <MenuIcon />
             </IconButton>
           </Hidden>
           <div className={classes.flexCtr}>
-            <Typography variant='title' color='inherit'>material-ui-jsonschema-form</Typography>
+            <Typography variant="h6" color="inherit">
+              material-ui-jsonschema-form
+            </Typography>
           </div>
         </Toolbar>
-        <LeftDrawer open={drawerOpen} toggleDrawer={this.toggleDrawer} onSelectMenuItem={onSelectMenuItem} />
+        <LeftDrawer
+          open={drawerOpen}
+          toggleDrawer={this.toggleDrawer}
+          onSelectMenuItem={onSelectMenuItem}
+        />
       </AppBar>
     );
   }

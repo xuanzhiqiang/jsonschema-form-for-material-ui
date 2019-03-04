@@ -85,7 +85,9 @@ class Form extends React.Component {
   };
 
   onSubmit = () => {
-    this.props.onSubmit({ formData: this.state.data });
+    const { onSubmit } = this.props;
+    const { data } = this.state;
+    onSubmit({ formData: data });
   };
 
   notifyChange = () => {
@@ -107,16 +109,17 @@ class Form extends React.Component {
       submitText,
       showErrorList,
       ErrorList,
+      buttonProps,
       ...rest
     } = this.props;
-    const { errors, id } = this.state;
+    const { errors, id, data } = this.state;
     return (
       <Paper className={classes.root}>
         {showErrorList ? <ErrorList errors={errors} field={id} /> : null}
         <div className={classes.field}>
           <FormField
-            path={''}
-            data={this.state.data}
+            path=""
+            data={data}
             id={id}
             className={classes.formfield}
             onChange={this.onChange}
@@ -136,6 +139,7 @@ class Form extends React.Component {
           classes={classes}
           cancelText={cancelText}
           submitText={submitText}
+          buttonProps={buttonProps}
         />
       </Paper>
     );
@@ -147,6 +151,7 @@ Form.propTypes = {
   schema: PropTypes.object.isRequired,
   classes: PropTypes.object,
   uiSchema: PropTypes.object,
+  buttonProps: PropTypes.object,
   formData: PropTypes.any,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
