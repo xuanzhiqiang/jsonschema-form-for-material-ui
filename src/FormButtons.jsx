@@ -10,18 +10,34 @@ export class RawFormButtons extends React.Component {
       classes,
       onCancel,
       onSubmit,
+      buttonProps,
       hasExternalOnSubmit,
       cancelText = 'Cancel',
       submitText = 'Submit'
     } = this.props;
+
+    const cancelProps = Object.assign(
+      {
+        variant: 'text',
+        onClick: onCancel
+      },
+      buttonProps
+    );
+    const submitProps = Object.assign(
+      {
+        variant: 'contained',
+        color: 'primary',
+        onClick: onSubmit
+      },
+      buttonProps
+    );
     return (
       (onCancel || onSubmit) && (
         <div className={classes.formButtons}>
           {onCancel && (
             <Button
               className={classNames(classes.cancel, classes.button)}
-              variant={'flat'}
-              onClick={onCancel}
+              {...cancelProps}
             >
               {cancelText}
             </Button>
@@ -29,9 +45,7 @@ export class RawFormButtons extends React.Component {
           {hasExternalOnSubmit && (
             <Button
               className={classNames(classes.submit, classes.button)}
-              variant={'raised'}
-              color={'primary'}
-              onClick={onSubmit}
+              {...submitProps}
             >
               {submitText}
             </Button>

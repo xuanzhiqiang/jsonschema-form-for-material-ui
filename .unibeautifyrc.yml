@@ -1,9 +1,20 @@
-JavaScript: # Enable language
-  beautifiers: ["Prettier"] # Enable beautifiers
-  quotes: "single"
+TypeScript:
+  beautifiers: ["Prettier"]
+  indent_style: tab
   end_with_semicolon: true
+  quotes: single
+  end_with_comma: true
 
-javascriptreact: # Enable language
-  beautifiers: ["Prettier"] # Enable beautifiers
-  quotes: "single"
+javascriptreact:
+  beautifiers: ["Prettier"]
+  indent_style: tab
   end_with_semicolon: true
+  quotes: single
+  end_with_comma: true
+
+JavaScript:
+  beautifiers: ["Prettier"]
+  indent_style: tab
+  end_with_semicolon: true
+  quotes: single
+  end_with_comma: true
