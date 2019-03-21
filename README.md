@@ -8,14 +8,17 @@ The initial project had lots of stuff in it, including a strict node version and
 
 This package:
 
-* Updated packages
-* Not pre-bundled
-* Better layout
-* Will be supported and updated
+- Updated packages
+- Not pre-bundled
+- Better layout
+- Will be supported and updated
 
 I will be monitoring Mozilla's repo for changes: they plan on becoming ui-agnostic, and I will migrate this project into a wrapper of that one when that happens (which will be a major version bump)
 
+_Update_: Mozilla is doing something similar: See https://github.com/mozilla-services/react-jsonschema-form/issues/1222 for details
+
 # Installation
+
 ```
 npm install --save jsonschema-form-for-material-ui
 ```
@@ -86,30 +89,30 @@ const initialFormData = {
 
 # API
 
-Prop | Description
--|-
-schema | The JSON Schema that will be the base of the form
-classes | `withStyles()` classes that get passed to root components for better styling of the form
-uiSchema| Extra styling for fields. </br> Each key references one schema key </br>
-formData | The initial data with which to populate the form
-onCancel | Called when the `Cancel` button is pressed
-onSubmit | Called when the `Submit` button is pressed
-onChange | Called when form data is changed
-cancelText | Text for the `Cancel` button (`Cancel` by default)
-submitText | Text for the `Submit` button (`Submit` by default)
-showErrorList | Boolean to display the error list
-showHelperError | Boolean to display error in FormHelperText
+| Prop            | Description                                                                              |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| schema          | The JSON Schema that will be the base of the form                                        |
+| classes         | `withStyles()` classes that get passed to root components for better styling of the form |
+| uiSchema        | Extra styling for fields. </br> Each key references one schema key </br>                 |
+| formData        | The initial data with which to populate the form                                         |
+| onCancel        | Called when the `Cancel` button is pressed                                               |
+| onSubmit        | Called when the `Submit` button is pressed                                               |
+| onChange        | Called when form data is changed                                                         |
+| cancelText      | Text for the `Cancel` button (`Cancel` by default)                                       |
+| submitText      | Text for the `Submit` button (`Submit` by default)                                       |
+| showErrorList   | Boolean to display the error list                                                        |
+| showHelperError | Boolean to display error in FormHelperText                                               |
 
 ## Classes
 
-name | element
--|-
-root | The surrounding `Paper` element  
-field | Fields container
-formButtons | Button div
-button | Cancel/Submit form button
-cancel | Cancel form button
-submit | Submit form button
+| name        | element                         |
+| ----------- | ------------------------------- |
+| root        | The surrounding `Paper` element |
+| field       | Fields container                |
+| formButtons | Button div                      |
+| button      | Cancel/Submit form button       |
+| cancel      | Cancel form button              |
+| submit      | Submit form button              |
 
 ## In-depth prop descriptions
 
@@ -121,12 +124,12 @@ This setting handles the input type that will be shown.
 
 Default - `textarea`
 
-* radio
-* updown
-* password
-* textarea
-* checkboxes
-* ~~alt-datetime (~~`todo`~~)~~
+- radio
+- updown
+- password
+- textarea
+- checkboxes
+- ~~alt-datetime (~~`todo`~~)~~
 
 #### ui:title - `string`
 
@@ -155,7 +158,6 @@ Help text that will be shown below the input
 row
 
 default
-
 
 # Contributing
 

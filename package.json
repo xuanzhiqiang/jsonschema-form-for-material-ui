@@ -24,7 +24,7 @@
   "license": "ISC",
   "main": "index.js",
   "name": "jsonschema-form-for-material-ui",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/TwoAbove/jsonschema-form-for-material-ui.git"
@@ -41,6 +41,9 @@
     "Material UI",
     "react-jsonschema-form",
     "jsonschema",
+    "json-schema",
+    "json",
+    "schema",
     "form",
     "react",
     "material-ui"
