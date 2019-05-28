@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
+import filter from 'lodash/filter';
+import keys from 'lodash/keys';
 import { generate } from 'shortid';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -12,46 +14,65 @@ import updateFormData, {
   moveListItem
 } from './helpers/update-form-data';
 import getValidationResult from './helpers/validation';
-import DefaultErrorList from './ErrorList';
+import DefaultErrorList, { hasErrors } from './ErrorList';
 import FormButtons from './FormButtons';
+import { getDefaultFormState, isObject } from './uitils';
 
 class Form extends React.Component {
   static defaultProps = {
     uiSchema: {},
     showErrorList: false,
     showHelperError: true,
-    ErrorList: DefaultErrorList
+    ErrorList: DefaultErrorList,
+    onErrors: () => {},
+    onChange: null,
+    onSubmit: null,
+    onCancel: null,
+    cancelText: null,
+    submitText: null
   };
 
-  state = {
-    data: this.props.formData,
-    errors: getValidationResult(this.props.schema, this.props.formData),
-    id: generate()
+  constructor(props) {
+    super(props);
+    const nextState = this.getStateFromProps(props);
+    this.state = {
+      id: generate(),
+      haveError: false,
+      ...nextState
+    };
+    if (!isEqual(nextState.data, props.formData)) {
+      if (props.onChange) {
+        props.onChange({ formData: nextState.data });
+      }
+    }
+  }
+
+  getStateFromProps = props => {
+    const data = getDefaultFormState(props.schema, props.formData);
+    const errors = getValidationResult(props.schema, data);
+    const haveError = hasErrors(errors);
+    return {
+      data,
+      errors,
+      haveError
+    };
   };
 
   componentWillReceiveProps = nextProps => {
-    let errors;
-    if (!isEqual(nextProps.schema, this.props.schema)) {
-      errors = {};
-    } else {
-      errors = getValidationResult(this.props.schema, nextProps.formData);
+    const nextState = this.getStateFromProps(nextProps);
+    if (!isEqual(this.state.data, nextState.data)) {
+      this.setState(nextState);
     }
-    this.setState({
-      errors,
-      data: nextProps.formData
-    });
   };
 
   onChange = field => value => {
     // eslint-disable-next-line react/no-access-state-in-setstate
     const data = updateFormData(this.state.data, field, value);
-    this.setState(
-      {
-        data,
-        errors: getValidationResult(this.props.schema, data)
-      },
-      this.notifyChange
-    );
+    const errors = getValidationResult(this.props.schema, data);
+    const haveError = hasErrors(errors);
+    this.setState(() => {
+      return { data, errors, haveError };
+    }, this.notifyChange);
   };
 
   onMoveItemUp = (path, idx) => () => {
@@ -85,9 +106,13 @@ class Form extends React.Component {
   };
 
   onSubmit = () => {
-    const { onSubmit } = this.props;
-    const { data } = this.state;
-    onSubmit({ formData: data });
+    const { onSubmit, onErrors } = this.props;
+    const { data, haveError, errors } = this.state;
+    if (haveError) {
+      onErrors(errors);
+    } else {
+      onSubmit({ formData: data });
+    }
   };
 
   notifyChange = () => {
@@ -101,7 +126,6 @@ class Form extends React.Component {
   render() {
     const {
       classes,
-      formData,
       onSubmit,
       onChange,
       onCancel,
@@ -112,7 +136,7 @@ class Form extends React.Component {
       buttonProps,
       ...rest
     } = this.props;
-    const { errors, id, data } = this.state;
+    const { errors, id, data, haveError } = this.state;
     return (
       <Paper className={classes.root}>
         {showErrorList ? <ErrorList errors={errors} field={id} /> : null}
@@ -133,6 +157,7 @@ class Form extends React.Component {
           />
         </div>
         <FormButtons
+          haveError={haveError}
           onSubmit={this.onSubmit}
           hasExternalOnSubmit={!!onSubmit}
           onCancel={onCancel}
@@ -155,6 +180,7 @@ Form.propTypes = {
   formData: PropTypes.any,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
+  onErrors: PropTypes.func,
   onCancel: PropTypes.func,
   cancelText: PropTypes.string,
   submitText: PropTypes.string,

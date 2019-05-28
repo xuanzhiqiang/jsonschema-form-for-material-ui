@@ -1,5 +1,39 @@
 {
-  "title": "A single-field form",
-  "type": "string",
-  "description": "Testing testing 123"
+  "type": "object",
+  "properties": {
+    "jenkins_config": {
+      "type": "object",
+      "title": "Jenkins 配置项",
+      "required": ["project_name"],
+      "properties": {
+        "project_name": {
+          "type": "string",
+          "title": "Project Name",
+          "minLength": 5
+        },
+        "codec": {
+          "type": "string",
+          "title": "Codec",
+          "enum": ["2mic", "4mic"],
+          "default": "2mic"
+        },
+        "security": {
+          "title": "是否支持security",
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "external_device_config": {
+      "type": "object",
+      "title": "外围设备配置",
+      "properties": {
+        "light": {
+          "type": "string",
+          "title": "light",
+          "minLength": 5
+        }
+      }
+    }
+  }
 }

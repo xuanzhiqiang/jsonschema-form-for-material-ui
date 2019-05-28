@@ -1,8 +1,5 @@
 {
-  "author": "Graham King <gking2224@gmail.com>",
-  "contributors": [
-    "Seva Maltsev <sevamaltsev@gmail.com>"
-  ],
+  "author": "Graham King <xuanzhiqiang00@gmail.com>",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -23,15 +20,15 @@
   },
   "license": "ISC",
   "main": "index.js",
-  "name": "jsonschema-form-for-material-ui",
-  "version": "1.4.2",
+  "name": "jsonschema-form-for-material-ui-linkplay",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TwoAbove/jsonschema-form-for-material-ui.git"
+    "url": "https://github.com/xuanzhiqiang/jsonschema-form-for-material-ui-linkplay.git"
   },
-  "homepage": "https://github.com/TwoAbove/jsonschema-form-for-material-ui",
+  "homepage": "https://github.com/xuanzhiqiang/jsonschema-form-for-material-ui-linkplay",
   "bugs": {
-    "url": "https://github.com/TwoAbove/jsonschema-form-for-material-ui/issues"
+    "url": "https://github.com/xuanzhiqiang/jsonschema-form-for-material-ui-linkplay/issues"
   },
   "prettier": {
     "semi": true,

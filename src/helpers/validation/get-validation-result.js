@@ -10,7 +10,7 @@ const validationResult = (schema, value) => {
     if (result) {
       rv.push({
         rule: ruleId,
-        ...result,
+        ...result
       });
     }
   });
@@ -29,5 +29,5 @@ const getFieldSpec = (schema, value) => {
 
 export default (schema, data) => {
   const spec = getFieldSpec(schema, data);
-  return update({}, spec);
+  return update(data, spec);
 };

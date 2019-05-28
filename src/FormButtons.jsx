@@ -3,13 +3,23 @@ import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 
 export class RawFormButtons extends React.Component {
-  shouldComponentUpdate = () => false;
+  componentWillReceiveProps(nextProps) {
+    const { haveError } = nextProps;
+    if (haveError !== this.props.haveError) {
+      this.shouldComponentUpdate = true;
+    } else {
+      this.shouldComponentUpdate = false;
+    }
+  }
+
+  shouldComponentUpdate = () => this.shouldComponentUpdate;
 
   render() {
     const {
       classes,
       onCancel,
       onSubmit,
+      haveError,
       buttonProps,
       hasExternalOnSubmit,
       cancelText = 'Cancel',
@@ -46,6 +56,7 @@ export class RawFormButtons extends React.Component {
             <Button
               className={classNames(classes.submit, classes.button)}
               {...submitProps}
+              disabled={haveError}
             >
               {submitText}
             </Button>

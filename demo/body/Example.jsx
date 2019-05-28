@@ -5,50 +5,56 @@ import styles from './example-styles';
 import Source from './Source';
 import Form from '../../src/Form';
 
-const formStyles = theme => createStyles({
-  field: {
-    paddingLeft: theme.spacing.unit * 4,
-  },
-  formButtons: {
-    order: 2,
-  },
-  root: {
-    display: 'flex',
-    padding: theme.spacing.unit,
-  },
-});
+const formStyles = theme =>
+  createStyles({
+    field: {
+      paddingLeft: theme.spacing.unit * 4
+    },
+    formButtons: {
+      order: 2
+    },
+    root: {
+      display: 'flex',
+      padding: theme.spacing.unit
+    }
+  });
 
 class Example extends React.Component {
   state = {
-    ...this.props.data, // eslint-disable-line react/destructuring-assignment
-  }
+    ...this.props.data // eslint-disable-line react/destructuring-assignment
+  };
 
   componentWillReceiveProps = ({ data }) => {
     this.setState({
-      ...data,
+      ...data
     });
-  }
+  };
 
-  onChange = type => (value) => {
+  onChange = type => value => {
     this.setState({
-      [type]: value,
+      [type]: value
     });
-  }
+  };
 
   onFormChanged = ({ formData }) => {
+    console.log('onFormChanged, ', formData);
     this.setState({ formData });
-  }
+  };
 
-  onSubmit = (value) => {
+  onSubmit = value => {
     console.log('onSubmit: %s', JSON.stringify(value)); // eslint-disable-line no-console
-  }
+  };
 
   onCancel = () => {
     const { data } = this.props;
     this.setState({
-      ...data,
+      ...data
     });
-  }
+  };
+
+  onErrors = errors => {
+    console.log(errors);
+  };
 
   render() {
     const { data, classes } = this.props;
@@ -60,11 +66,23 @@ class Example extends React.Component {
         <div className={classes.ctr}>
           <div className={classes.sourceCtr}>
             <div>
-              <Source title={'JSONSchema'} source={schema} onChange={this.onChange('schema')} />
+              <Source
+                title={'JSONSchema'}
+                source={schema}
+                onChange={this.onChange('schema')}
+              />
             </div>
             <div>
-              <Source title={'uiSchema'} source={uiSchema} onChange={this.onChange('uiSchema')} />
-              <Source title={'formData'} source={formData} onChange={this.onChange('formData')} />
+              <Source
+                title={'uiSchema'}
+                source={uiSchema}
+                onChange={this.onChange('uiSchema')}
+              />
+              <Source
+                title={'formData'}
+                source={formData}
+                onChange={this.onChange('formData')}
+              />
             </div>
           </div>
           <div className={classes.display}>
@@ -78,9 +96,10 @@ class Example extends React.Component {
               onChange={this.onFormChanged}
               cancelText={'Cancel'}
               submitText={'Save'}
-              showErrorList={showErrorList}
-              showHelperError={showHelperError}
-              ErrorList={ErrorList}
+              showErrorList={true}
+              showHelperError={true}
+              onErrors={this.onErrors}
+              // ErrorList={ErrorList}
             />
           </div>
         </div>
