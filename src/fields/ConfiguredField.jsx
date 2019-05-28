@@ -15,6 +15,11 @@ import fieldStyles from './field-styles';
 
 // for unit testing only
 export class RawConfiguredField extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   shouldComponentUpdate = (nextProps, nextState) => {
     if (this.props.data !== nextProps.data) return true;
     if (this.state.anchorEl !== nextState.anchorEl) return true;
