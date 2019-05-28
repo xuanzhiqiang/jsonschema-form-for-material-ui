@@ -1,4 +1,4 @@
-# [jsonschema-form-for-material-ui](https://www.npmjs.com/package/jsonschema-form-for-material-ui)
+# [jsonschema-form-for-material-ui-linkplay](https://www.npmjs.com/package/jsonschema-form-for-material-ui-linkplay)
 
 A [Material UI](http://www.material-ui.com/) port of [react-jsonschema-form](https://github.com/mozilla-services/react-jsonschema-form).
 
@@ -20,13 +20,13 @@ _Update_: Mozilla is doing something similar: See https://github.com/mozilla-ser
 # Installation
 
 ```
-npm install --save jsonschema-form-for-material-ui
+npm install --save jsonschema-form-for-material-ui-linkplay
 ```
 
 # Usage
 
 ```js
-import SchemaForm from 'jsonschema-form-for-material-ui';
+import SchemaForm from 'jsonschema-form-for-material-ui-linkplay';
 
 const styles = theme => ({
   field: {},
