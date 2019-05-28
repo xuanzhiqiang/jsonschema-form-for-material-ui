@@ -49,8 +49,6 @@ class Form extends React.Component {
     const data = getDefaultFormState(props.schema, props.formData);
     const errors = getValidationResult(props.schema, data);
     const haveError = hasErrors(errors);
-    console.log('errors ', errors);
-    console.log('haveError ', haveError);
     return {
       data,
       errors,
