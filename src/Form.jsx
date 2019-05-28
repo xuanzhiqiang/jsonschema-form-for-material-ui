@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
-import filter from 'lodash/filter';
-import keys from 'lodash/keys';
 import { generate } from 'shortid';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -16,7 +14,7 @@ import updateFormData, {
 import getValidationResult from './helpers/validation';
 import DefaultErrorList, { hasErrors } from './ErrorList';
 import FormButtons from './FormButtons';
-import { getDefaultFormState, isObject } from './uitils';
+import { getDefaultFormState } from './uitils';
 
 class Form extends React.Component {
   static defaultProps = {
@@ -51,6 +49,8 @@ class Form extends React.Component {
     const data = getDefaultFormState(props.schema, props.formData);
     const errors = getValidationResult(props.schema, data);
     const haveError = hasErrors(errors);
+    console.log('errors ', errors);
+    console.log('haveError ', haveError);
     return {
       data,
       errors,

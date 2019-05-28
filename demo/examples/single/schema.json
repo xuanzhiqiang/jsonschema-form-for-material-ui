@@ -30,8 +30,7 @@
       "properties": {
         "light": {
           "type": "string",
-          "title": "light",
-          "minLength": 5
+          "title": "light"
         }
       }
     }

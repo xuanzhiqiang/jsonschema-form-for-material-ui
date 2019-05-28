@@ -50,13 +50,13 @@ export const hasErrors = errors => {
   let errorsFlag = false;
 
   Object.values(errors).forEach(error => {
-    if (isObject(error)) {
+    if (!errorsFlag && isObject(error)) {
       errorsFlag = hasErrors(error);
     }
   });
 
   Object.values(errors).forEach(error => {
-    if (error.length > 0) {
+    if (!errorsFlag && error.length > 0) {
       errorsFlag = true;
     }
   });
