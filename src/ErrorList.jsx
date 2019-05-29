@@ -56,7 +56,7 @@ export const hasErrors = errors => {
   });
 
   Object.values(errors).forEach(error => {
-    if (!errorsFlag && error.length > 0) {
+    if (!errorsFlag && Array.isArray(error) && error.length > 0) {
       errorsFlag = true;
     }
   });

@@ -6,10 +6,6 @@
       "title": "Jenkins 配置项",
       "required": ["project_name"],
       "properties": {
-        "project_name": {
-          "type": "string",
-          "title": "Project Name"
-        },
         "codec": {
           "type": "string",
           "title": "Codec",
