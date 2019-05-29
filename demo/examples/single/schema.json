@@ -8,8 +8,7 @@
       "properties": {
         "project_name": {
           "type": "string",
-          "title": "Project Name",
-          "minLength": 5
+          "title": "Project Name"
         },
         "codec": {
           "type": "string",

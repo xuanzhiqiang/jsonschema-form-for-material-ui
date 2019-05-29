@@ -74,9 +74,12 @@ function allErrorsItem({ errors, field, classes, root }) {
     } else {
       anchor = `${field}.${v}`;
     }
-    return (
-      <Errors key={v} errors={errors[v]} anchor={anchor} classes={classes} />
-    );
+    if (Array.isArray(errors[v])) {
+      return (
+        <Errors key={v} errors={errors[v]} anchor={anchor} classes={classes} />
+      );
+    }
+    return null;
   });
 
   filter(keys(errors), k => {

@@ -1,1 +1,9 @@
-{}
+{
+  "jenkins_config": {
+    "project_name": {
+      "ui:options": {
+        "disabled": true
+      }
+    }
+  }
+}
