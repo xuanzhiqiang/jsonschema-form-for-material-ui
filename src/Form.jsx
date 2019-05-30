@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import { generate } from 'shortid';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import formStyles from './form-styles';
 import FormField from './FormField';
 import updateFormData, {
@@ -136,7 +135,7 @@ class Form extends React.Component {
     } = this.props;
     const { errors, id, data, haveError } = this.state;
     return (
-      <Paper className={classes.root}>
+      <div className={classes.root}>
         {showErrorList ? <ErrorList errors={errors} field={id} /> : null}
         <div className={classes.field}>
           <FormField
@@ -164,7 +163,7 @@ class Form extends React.Component {
           submitText={submitText}
           buttonProps={buttonProps}
         />
-      </Paper>
+      </div>
     );
   }
 }
