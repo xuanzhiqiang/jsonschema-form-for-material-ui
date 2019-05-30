@@ -6,7 +6,6 @@ export default {
       border: 0
     },
     listItem: {
-      // border: `1px dotted ${theme.palette.primary.main}`,
       margin: theme.spacing.unit,
       padding: theme.spacing.unit
     }
@@ -16,7 +15,8 @@ export default {
       display: 'flex',
       flexDirection: 'column',
       '&$row': {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        flexWrap: 'wrap'
       }
     },
     row: {},
@@ -48,21 +48,22 @@ export default {
     },
     listItem: {}
   },
-  reorderControls: theme => ({
+  reorderControls: () => ({
     root: {
       display: 'flex',
-      border: `1px solid ${theme.palette.grey[400]}`,
+      flexDirection: 'row',
       '& >button': {
-        borderRadius: 0,
-        '&:not(:last-child)': {
-          borderRight: `1px solid ${theme.palette.grey[400]}`
-        }
+        // marginRight: 1,
+        // borderRadius: 0,
+        // '&:not(:last-child)': {
+        //   borderRight: `1px solid ${theme.palette.grey[400]}`
+        // }
       }
-    },
-    remove: {
-      background: theme.palette.error.main,
-      color: theme.palette.grey[800]
     }
+    // remove: {
+    //   background: theme.palette.error.main,
+    //   color: theme.palette.grey[800]
+    // }
   }),
   fieldSetContent: {
     root: {},
