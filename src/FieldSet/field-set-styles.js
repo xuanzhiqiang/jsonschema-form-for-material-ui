@@ -6,7 +6,7 @@ export default {
       border: 0
     },
     listItem: {
-      border: `1px dotted ${theme.palette.primary.main}`,
+      // border: `1px dotted ${theme.palette.primary.main}`,
       margin: theme.spacing.unit,
       padding: theme.spacing.unit
     }
@@ -33,10 +33,7 @@ export default {
       justifyContent: 'flex-end',
       '&>button': {
         background: theme.palette.primary.main,
-        // 'width': '3.75em',
         color: theme.palette.common.white
-        // 'height': '1.25em',
-        // 'borderRadius': 5,
       }
     }
   }),
