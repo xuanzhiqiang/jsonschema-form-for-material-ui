@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import keys from 'lodash/keys';
-import { withStyles } from '@material-ui/core/styles';
+import forOwn from 'lodash/forOwn';
 import filter from 'lodash/filter';
+import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -32,8 +32,8 @@ const Errors = ({ errors, anchor, classes }) => (
       document.getElementById(anchor).focus(); // eslint-disable-line
     }}
   >
-    {errors.map((v, idx) => (
-      <Error key={idx} errors={v} classes={classes} />
+    {errors.map(v => (
+      <Error key={v} errors={v} classes={classes} />
     )) // eslint-disable-line react/no-array-index-key,max-len
     }
   </ListItem>
@@ -57,7 +57,15 @@ export const hasErrors = errors => {
 
   Object.values(errors).forEach(error => {
     if (!errorsFlag && Array.isArray(error) && error.length > 0) {
-      errorsFlag = true;
+      if (error[0].hasOwnProperty('message')) {
+        errorsFlag = true;
+      } else {
+        Object.values(error).forEach(e => {
+          if (!errorsFlag) {
+            errorsFlag = hasErrors(e);
+          }
+        });
+      }
     }
   });
   return errorsFlag;
@@ -74,10 +82,38 @@ function allErrorsItem({ errors, field, classes, root }) {
     } else {
       anchor = `${field}.${v}`;
     }
-    if (Array.isArray(errors[v])) {
-      return (
-        <Errors key={v} errors={errors[v]} anchor={anchor} classes={classes} />
-      );
+    if (Array.isArray(errors[v]) && errors[v].length > 0) {
+      if (errors[v][0].hasOwnProperty('message')) {
+        return (
+          <Errors
+            key={v}
+            errors={errors[v]}
+            anchor={anchor}
+            classes={classes}
+          />
+        );
+      }
+      const rv = [];
+      forOwn(errors[v], (e, index) => {
+        if (root === field) {
+          rv.push(
+            allErrorsItem({
+              errors: e,
+              field: `${field}_${v}[${index}]`,
+              classes
+            })
+          );
+        } else {
+          rv.push(
+            allErrorsItem({
+              errors: e,
+              field: `${field}.${v}[${index}]`,
+              classes
+            })
+          );
+        }
+      });
+      return rv;
     }
     return null;
   });

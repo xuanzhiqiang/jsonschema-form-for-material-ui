@@ -24,6 +24,13 @@ const getFieldSpec = (schema, value) => {
   if (typeof value !== 'object') {
     return { $set: validationResult(schema, value) };
   }
+  if (schema.type === 'array') {
+    const rv = [];
+    forOwn(value, item => {
+      rv.push(getFieldSpec(schema.items, item));
+    });
+    return rv;
+  }
   return mapValues(schema.properties, (s, p) => getFieldSpec(s, value[p]));
 };
 

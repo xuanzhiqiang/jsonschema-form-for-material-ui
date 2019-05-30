@@ -6,21 +6,25 @@ import fieldSetStyles from './field-set-styles';
 import ReorderControls from './ReorderControls';
 
 export const RawReorderableFormField = ({
-  first, last, className, classes, path, onMoveItemUp, onMoveItemDown, onDeleteItem, ...rest
-}) =>
-  (
-    <div className={classNames(className, classes.root)}>
-      <FormField
-        path={path}
-        {...rest}
-      />
-      <ReorderControls
-        first={first}
-        last={last}
-        onMoveItemUp={onMoveItemUp}
-        onMoveItemDown={onMoveItemDown}
-        onDeleteItem={onDeleteItem}
-      />
-    </div>
-  );
+  first,
+  last,
+  className,
+  classes,
+  path,
+  _onMoveItemUp,
+  _onMoveItemDown,
+  _onDeleteItem,
+  ...rest
+}) => (
+  <div className={classNames(className, classes.root)}>
+    <FormField path={path} {...rest} />
+    <ReorderControls
+      first={first}
+      last={last}
+      onMoveItemUp={_onMoveItemUp}
+      onMoveItemDown={_onMoveItemDown}
+      onDeleteItem={_onDeleteItem}
+    />
+  </div>
+);
 export default withStyles(fieldSetStyles.reorderable)(RawReorderableFormField);

@@ -73,33 +73,43 @@ class Form extends React.Component {
   };
 
   onMoveItemUp = (path, idx) => () => {
-    this.setState(
-      prevState => ({ data: moveListItem(prevState.data, path, idx, -1) }),
-      this.notifyChange
-    );
+    const { schema } = this.props;
+    this.setState(prevState => {
+      const data = moveListItem(prevState.data, path, idx, -1);
+      const errors = getValidationResult(schema, data);
+      const haveError = hasErrors(errors);
+      return { data, errors, haveError };
+    }, this.notifyChange);
   };
 
   onMoveItemDown = (path, idx) => () => {
-    this.setState(
-      prevState => ({ data: moveListItem(prevState.data, path, idx, 1) }),
-      this.notifyChange
-    );
+    const { schema } = this.props;
+    this.setState(prevState => {
+      const data = moveListItem(prevState.data, path, idx, 1);
+      const errors = getValidationResult(schema, data);
+      const haveError = hasErrors(errors);
+      return { data, errors, haveError };
+    }, this.notifyChange);
   };
 
   onDeleteItem = (path, idx) => () => {
-    this.setState(
-      prevState => ({ data: removeListItem(prevState.data, path, idx) }),
-      this.notifyChange
-    );
+    const { schema } = this.props;
+    this.setState(prevState => {
+      const data = removeListItem(prevState.data, path, idx);
+      const errors = getValidationResult(schema, data);
+      const haveError = hasErrors(errors);
+      return { data, errors, haveError };
+    }, this.notifyChange);
   };
 
   onAddItem = (path, defaultValue) => () => {
-    this.setState(
-      prevState => ({
-        data: addListItem(prevState.data, path, defaultValue || '')
-      }),
-      this.notifyChange
-    );
+    const { schema } = this.props;
+    this.setState(prevState => {
+      const data = addListItem(prevState.data, path, defaultValue || '');
+      const errors = getValidationResult(schema, data);
+      const haveError = hasErrors(errors);
+      return { data, errors, haveError };
+    }, this.notifyChange);
   };
 
   onSubmit = () => {

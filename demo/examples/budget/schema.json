@@ -13,7 +13,8 @@
         "properties": {
           "location": {
             "title": "Location",
-            "type": "string"
+            "type": "string",
+            "minLength": 20
           },
           "allocations": {
             "title": "Allocations",
@@ -24,7 +25,8 @@
               "properties": {
                 "name": {
                   "title": "Resource",
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 20
                 },
                 "rate": {
                   "title": "Rate",
@@ -32,7 +34,8 @@
                 },
                 "location": {
                   "title": "Location",
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 20
                 }
               }
             }
