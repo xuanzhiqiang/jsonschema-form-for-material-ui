@@ -3,15 +3,15 @@ import getMuiProps from './get-mui-props';
 import getInputType from './get-input-type';
 import valuesToOptions from './values-to-options';
 
-const toNumber = (v) => {
+const toNumber = v => {
   if (v === '' || v === undefined) return v;
   const n = Number(v);
-  return (!Number.isNaN(n) ? n : v);
+  return !Number.isNaN(n) ? n : v;
 };
 const coerceValue = (type, value) => {
   switch (type) {
     case 'string':
-      return (typeof value === 'string' ? value : String(value));
+      return typeof value === 'string' ? value : String(value);
     case 'number':
     case 'integer':
     case 'double':
@@ -22,53 +22,59 @@ const coerceValue = (type, value) => {
       return value;
   }
 };
-const onChangeHandler = (onChange, type) => (e) => {
+const onChangeHandler = (onChange, type) => e => {
   const value = coerceValue(type, e.target.value);
   if (value !== undefined) onChange(value);
 };
-const onCheckboxChangeHandler = (onChange, title) => (e) => {
-  const spec = {
-  };
+const onCheckboxChangeHandler = (onChange, title) => e => {
+  const spec = {};
   if (e) {
     spec.$push = [title];
-  }
-  else {
+  } else {
     spec.$apply = arr => without(arr, title);
   }
   return onChange(spec);
 };
 
-export default ({ schema = {}, uiSchema = {}, onChange, htmlId, data, objectData }) => {
+export default ({
+  schema = {},
+  uiSchema = {},
+  onChange,
+  htmlId,
+  data,
+  objectData
+}) => {
   const widget = uiSchema['ui:widget'];
   const options = uiSchema['ui:options'] || {};
   const { type } = schema;
   const rv = {
     type: getInputType(type, uiSchema),
     onChange: onChange && onChangeHandler(onChange, type),
-    ...getMuiProps(uiSchema),
+    ...getMuiProps(uiSchema)
   };
   if (schema.enum) {
     if (widget === 'radio') {
       if (options.inline) {
         rv.row = true;
       }
-    }
-    else if (widget === 'checkboxes') {
+    } else if (widget === 'checkboxes') {
       rv.onChange = onChange && onCheckboxChangeHandler(onChange, schema.title);
       rv.label = schema.title;
-    }
-    else {
+    } else {
       rv.nullOption = 'Please select...';
     }
     rv.options = valuesToOptions(schema.enum);
-  }
-  else if (type === 'boolean') {
+  } else if (type === 'boolean') {
     rv.label = schema.title;
     rv.onChange = onChange;
-  }
-  else {
+  } else if (type === 'image') {
+    rv.src = schema.src;
+    rv.alt = schema.alt;
+    rv.height = schema.height;
+    rv.width = schema.width;
+  } else {
     rv.inputProps = {
-      id: htmlId,
+      id: htmlId
     };
   }
   if (widget === 'textarea') {
@@ -78,9 +84,8 @@ export default ({ schema = {}, uiSchema = {}, onChange, htmlId, data, objectData
   if (options.disabled) {
     if (typeof options.disabled === 'boolean') {
       rv.disabled = options.disabled;
-    }
-    else if (typeof options.disabled === 'function') {
-      rv.disabled = (options.disabled).call(null, data, objectData);
+    } else if (typeof options.disabled === 'function') {
+      rv.disabled = options.disabled.call(null, data, objectData);
     }
   }
   return rv;

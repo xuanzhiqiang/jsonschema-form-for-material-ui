@@ -26,6 +26,12 @@
         "light": {
           "type": "string",
           "title": "light"
+        },
+        "image": {
+          "type": "image",
+          "src": "http://pic37.nipic.com/20140113/8800276_184927469000_2.png",
+          "alt": "image",
+          "width": "50%"
         }
       }
     }
