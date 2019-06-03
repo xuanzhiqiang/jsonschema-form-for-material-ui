@@ -20,18 +20,19 @@
             "title": "Allocations",
             "type": "array",
             "items": {
-              "default": {},
               "type": "object",
               "properties": {
                 "name": {
                   "title": "Resource",
                   "type": "string",
-                  "enum": ["short", "long"]
+                  "enum": ["short", "long"],
+                  "default": "short"
                 },
                 "rate": {
                   "title": "Rate",
                   "type": "string",
-                  "enum": ["short", "long"]
+                  "enum": ["short", "long"],
+                  "default": "long"
                 },
                 "location": {
                   "title": "Location",

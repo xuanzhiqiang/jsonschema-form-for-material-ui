@@ -1,6 +1,6 @@
 import mapValues from 'lodash/mapValues';
 
-const getDefaultValue = (schema) => {
+const getDefaultValue = schema => {
   if (schema.default) return schema.default;
   switch (schema.type) {
     case 'object':
@@ -8,6 +8,7 @@ const getDefaultValue = (schema) => {
     case 'string':
     case 'number':
     default:
+      if (schema.default) return schema.default;
       return '';
   }
 };

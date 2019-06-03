@@ -4,7 +4,8 @@ export default theme => ({
       marginTop: theme.spacing.unit * 3,
       marginLeft: theme.spacing.unit * 1,
       marginRight: theme.spacing.unit * 1
-    }
+    },
+    flex: 1
   },
   textarea: {
     '& textarea': {
