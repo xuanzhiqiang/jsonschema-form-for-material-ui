@@ -8,7 +8,10 @@
       "properties": {
         "codec": {
           "type": "string",
-          "title": "Codec",
+          "title": {
+            "en": "Codec",
+            "zh-CN": "编解码器"
+          },
           "enum": ["2mic", "4mic"],
           "default": "2mic"
         },

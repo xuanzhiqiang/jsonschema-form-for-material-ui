@@ -2,6 +2,7 @@ import without from 'lodash/without';
 import getMuiProps from './get-mui-props';
 import getInputType from './get-input-type';
 import valuesToOptions from './values-to-options';
+import Localized from '../../localized';
 
 const toNumber = v => {
   if (v === '' || v === undefined) return v;
@@ -47,6 +48,7 @@ export default ({
   const widget = uiSchema['ui:widget'];
   const options = uiSchema['ui:options'] || {};
   const { type } = schema;
+  const title = Localized.getStringByLanguage(schema.title);
   const rv = {
     type: getInputType(type, uiSchema),
     onChange: onChange && onChangeHandler(onChange, type),
@@ -58,14 +60,14 @@ export default ({
         rv.row = true;
       }
     } else if (widget === 'checkboxes') {
-      rv.onChange = onChange && onCheckboxChangeHandler(onChange, schema.title);
-      rv.label = schema.title;
+      rv.onChange = onChange && onCheckboxChangeHandler(onChange, title);
+      rv.label = title;
     } else {
       rv.nullOption = 'Please select...';
     }
     rv.options = valuesToOptions(schema.enum);
   } else if (type === 'boolean') {
-    rv.label = schema.title;
+    rv.label = title;
     rv.onChange = onChange;
   } else if (type === 'image') {
     rv.src = schema.src;
