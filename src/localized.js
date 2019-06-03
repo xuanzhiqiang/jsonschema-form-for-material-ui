@@ -13,6 +13,10 @@ export default class Localized {
     );
   }
 
+  static setLocalized = localized => {
+    Localized.strings = localized;
+  };
+
   static getLanguage = () => {
     if (Localized.strings === undefined) {
       Localized.INSTANCE = new Localized();

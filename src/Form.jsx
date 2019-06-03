@@ -14,6 +14,7 @@ import getValidationResult from './helpers/validation';
 import DefaultErrorList, { hasErrors } from './ErrorList';
 import FormButtons from './FormButtons';
 import { getDefaultFormState } from './uitils';
+import Localized from './localized';
 
 class Form extends React.Component {
   static defaultProps = {
@@ -26,11 +27,15 @@ class Form extends React.Component {
     onSubmit: null,
     onCancel: null,
     cancelText: null,
-    submitText: null
+    submitText: null,
+    localized: null
   };
 
   constructor(props) {
     super(props);
+    if (props.localized) {
+      Localized.setLocalized(props.localized);
+    }
     const nextState = this.getStateFromProps(props);
     this.state = {
       id: generate(),
@@ -193,5 +198,6 @@ Form.propTypes = {
   submitText: PropTypes.string,
   showErrorList: PropTypes.bool,
   showHelperError: PropTypes.bool,
-  ErrorList: PropTypes.func
+  ErrorList: PropTypes.func,
+  localized: PropTypes.object
 };
