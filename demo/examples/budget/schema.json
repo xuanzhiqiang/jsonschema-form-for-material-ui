@@ -26,16 +26,17 @@
                 "name": {
                   "title": "Resource",
                   "type": "string",
-                  "minLength": 20
+                  "enum": ["short", "long"]
                 },
                 "rate": {
                   "title": "Rate",
-                  "type": "string"
+                  "type": "string",
+                  "enum": ["short", "long"]
                 },
                 "location": {
                   "title": "Location",
                   "type": "string",
-                  "minLength": 20
+                  "enum": ["short", "long"]
                 }
               }
             }
