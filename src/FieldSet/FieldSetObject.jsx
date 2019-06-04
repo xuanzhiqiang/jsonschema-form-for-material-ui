@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import keys from 'lodash/keys';
 import { withStyles } from '@material-ui/core/styles';
 import FormField from '../FormField';
@@ -15,9 +14,10 @@ export const RawFieldSetObject = ({
   errors,
   ...rest
 }) => {
-  const orientation = uiSchema['ui:orientation'] === 'row' ? classes.row : null;
+  const orientation =
+    uiSchema['ui:orientation'] === 'row' ? classes.row : classes.column;
   return (
-    <div className={classNames(classes.root, orientation)}>
+    <div className={orientation}>
       {keys(schema.properties).map(p => {
         const newPath = path ? `${path}.${p}` : p;
         const error = errors && errors.hasOwnProperty(p) ? errors[p] : null;

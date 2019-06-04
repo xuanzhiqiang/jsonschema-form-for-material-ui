@@ -81,7 +81,7 @@ export default ({
   }
   if (widget === 'textarea') {
     rv.multiline = true;
-    rv.rows = 5;
+    rv.rowsMax = 5;
   }
   if (options.disabled) {
     if (typeof options.disabled === 'boolean') {

@@ -2,6 +2,7 @@ export default {
   fieldSet: theme => ({
     root: {
       display: 'flex',
+      flex: 1,
       flexDirection: 'column',
       border: 0
     },
@@ -11,59 +12,43 @@ export default {
     }
   }),
   fieldSetObject: {
-    root: {
+    column: {
       display: 'flex',
-      flexDirection: 'column',
-      '&$row': {
-        flexDirection: 'row',
-        flexWrap: 'wrap'
-      }
+      flexDirection: 'column'
     },
-    row: {},
+    row: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap'
+    },
     listItem: {}
   },
-  fieldSetArray: theme => ({
+  fieldSetArray: () => ({
     root: {
       display: 'flex',
+      flex: 1,
       flexDirection: 'column'
     },
     listItem: {},
     addItemBtn: {
       display: 'flex',
-      justifyContent: 'flex-end',
-      '&>button': {
-        background: theme.palette.primary.main,
-        color: theme.palette.common.white
-      }
+      justifyContent: 'flex-end'
     }
   }),
   reorderable: {
     root: {
       display: 'flex',
+      flex: 1,
       alignItems: 'baseline',
-      justifyContent: 'space-between',
-      '& >fieldset': {
-        width: '100%'
-      }
+      justifyContent: 'space-between'
     },
     listItem: {}
   },
   reorderControls: () => ({
     root: {
       display: 'flex',
-      flexDirection: 'row',
-      '& >button': {
-        // marginRight: 1,
-        // borderRadius: 0,
-        // '&:not(:last-child)': {
-        //   borderRight: `1px solid ${theme.palette.grey[400]}`
-        // }
-      }
+      flexDirection: 'row'
     }
-    // remove: {
-    //   background: theme.palette.error.main,
-    //   color: theme.palette.grey[800]
-    // }
   }),
   fieldSetContent: {
     root: {},
