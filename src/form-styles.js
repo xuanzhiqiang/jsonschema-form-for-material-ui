@@ -17,7 +17,7 @@ export default theme => ({
   },
   button: {
     fontSize: '100%',
-    margin: theme.spacing(2)
+    marginLeft: theme.spacing(2)
   },
   field: {},
   formfield: {}
