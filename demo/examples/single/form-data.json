@@ -1,1 +1,15 @@
-"initial value"
+{
+  "codec": "pcm5121",
+  "micNumber": "2mic",
+  "security": false,
+  "light": "None",
+  "lightNumber": 1,
+  "powerConfig": {
+    "power": false,
+    "lowPower": "",
+    "powerOff": "",
+    "intervalTime": ""
+  },
+  "image": "",
+  "keys": []
+}

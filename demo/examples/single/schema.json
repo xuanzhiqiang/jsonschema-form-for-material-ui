@@ -1,40 +1,160 @@
 {
   "type": "object",
   "properties": {
-    "jenkins_config": {
+    "codec": {
+      "type": "string",
+      "title": {
+        "en": "Codec",
+        "zh-CN": "编解码器"
+      },
+      "enum": ["pcm5121", "du561"],
+      "default": "pcm5121"
+    },
+    "micNumber": {
+      "type": "string",
+      "title": {
+        "en": "MIC Number",
+        "zh-CN": "麦克风数量"
+      },
+      "enum": ["2mic", "4mic"],
+      "default": "2mic"
+    },
+    "security": {
+      "title": {
+        "en": "Support Security",
+        "zh-CN": "支持 Security"
+      },
+      "type": "boolean",
+      "default": false
+    },
+    "light": {
+      "type": "string",
+      "title": {
+        "en": "Light",
+        "zh-CN": "灯"
+      },
+      "enum": ["None", "PWM", "I2C-3206", "I2C-3208", "I2C-3236", "I2C-3737"],
+      "default": "None"
+    },
+    "lightNumber": {
+      "type": "number",
+      "title": {
+        "en": "Light Number",
+        "zh-CN": "灯的数量"
+      },
+      "enum": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "default": 1
+    },
+    "powerConfig": {
       "type": "object",
-      "title": "Jenkins 配置项",
-      "required": ["project_name"],
       "properties": {
-        "codec": {
-          "type": "string",
+        "power": {
           "title": {
-            "en": "Codec",
-            "zh-CN": "编解码器"
+            "en": "Have batteries",
+            "zh-CN": "有电池"
           },
-          "enum": ["2mic", "4mic"],
-          "default": "2mic"
-        },
-        "security": {
-          "title": "是否支持security",
           "type": "boolean",
           "default": false
+        },
+        "lowPower": {
+          "title": {
+            "en": "Low battery reminders percentage",
+            "zh-CN": "低电量提醒百分比"
+          },
+          "type": "number",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "powerOff": {
+          "title": {
+            "en": "Shutdown Percentage",
+            "zh-CN": "关机百分比"
+          },
+          "type": "number",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "intervalTime": {
+          "title": {
+            "en": "Reminder interval",
+            "zh-CN": "提醒间隔"
+          },
+          "type": "number"
         }
       }
     },
-    "external_device_config": {
-      "type": "object",
-      "title": "外围设备配置",
-      "properties": {
-        "light": {
-          "type": "string",
-          "title": "light"
-        },
-        "image": {
-          "type": "image",
-          "src": "https://linkplay-develop.oss-cn-beijing.aliyuncs.com/image/8ef133a3dede9bca8b466879a1f67398.png",
-          "alt": "image",
-          "height": "100%"
+    "image": {
+      "title": " ",
+      "type": "image",
+      "src": "https://linkplay-develop.oss-cn-beijing.aliyuncs.com/image/8ef133a3dede9bca8b466879a1f67398.png",
+      "alt": "image",
+      "width": "100%"
+    },
+    "keys": {
+      "title": {
+        "en": "Defining keys",
+        "zh-CN": "定义按键"
+      },
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "title": {
+              "en": "Key",
+              "zh-CN": "按键"
+            },
+            "type": "string",
+            "enum": [
+              "KEY1",
+              "KEY2",
+              "KEY3",
+              "KEY4",
+              "KEY5",
+              "KEY6",
+              "KEY7",
+              "KEY8",
+              "KEY6+KEY7",
+              "KEY7+KEY8"
+            ],
+            "default": "KEY1"
+          },
+          "event": {
+            "title": {
+              "en": "Event",
+              "zh-CN": "按键功能"
+            },
+            "type": "string",
+            "enum": [
+              "talk",
+              "VolumeDown",
+              "VolumeUp",
+              "mode",
+              "prev",
+              "next",
+              "play/pause",
+              "mute",
+              "factoryreset",
+              "wpssetup"
+            ],
+            "default": "talk"
+          },
+          "pressType": {
+            "title": {
+              "en": "Press",
+              "zh-CN": "按压模式"
+            },
+            "type": "string",
+            "enum": ["short", "long"],
+            "default": "short"
+          },
+          "pressTime": {
+            "type": "integer",
+            "title": {
+              "en": "Press Time",
+              "zh-CN": "按压时长"
+            }
+          }
         }
       }
     }

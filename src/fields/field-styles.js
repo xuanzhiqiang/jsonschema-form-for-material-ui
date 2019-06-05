@@ -1,7 +1,7 @@
 export default theme => ({
   root: {
     flex: 1,
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(2),
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1)
   },
@@ -12,9 +12,7 @@ export default theme => ({
     color: theme.palette.grey[500]
   },
   withLabel: {},
-  label: {
-    marginTop: theme.spacing(-1)
-  },
+  label: {},
   tooltip: {
     marginTop: theme.spacing(-2)
   }

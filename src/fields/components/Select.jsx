@@ -9,13 +9,19 @@ export default ({
   nullOption,
   onChange,
   ...rest
-}) => (
-  <Select {...rest} value={String(value)} onChange={onChange}>
-    {value === null && <MenuItem value="">{nullOption}</MenuItem>}
-    {options.map(o => (
-      <MenuItem key={o.key} value={String(o.key)}>
-        {String(o.value)}
-      </MenuItem>
-    ))}
-  </Select>
-);
+}) => {
+  let _value = '';
+  if (options.find(o => value === o.key)) {
+    _value = value;
+  }
+  return (
+    <Select {...rest} value={String(_value)} onChange={onChange}>
+      {value === null && <MenuItem value="">{nullOption}</MenuItem>}
+      {options.map(o => (
+        <MenuItem key={o.key} value={String(o.key)}>
+          {String(o.value)}
+        </MenuItem>
+      ))}
+    </Select>
+  );
+};

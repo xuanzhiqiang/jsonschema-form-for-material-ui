@@ -4,8 +4,7 @@ export default {
       display: 'flex',
       flex: 1,
       flexDirection: 'column',
-      border: 0,
-      marginTop: theme.spacing(2)
+      marginTop: theme.spacing(1)
     },
     listItem: {
       margin: theme.spacing(1),
@@ -26,7 +25,6 @@ export default {
   },
   fieldSetArray: () => ({
     root: {
-      flex: 1,
       display: 'flex',
       flexDirection: 'column'
     },

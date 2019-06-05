@@ -1,5 +1,7 @@
 export default theme => ({
   root: {
+    display: 'flex',
+    flexDirection: 'column',
     padding: theme.spacing(2)
   },
   formButtons: {
@@ -17,9 +19,6 @@ export default theme => ({
     fontSize: '100%',
     margin: theme.spacing(2)
   },
-  field: {
-    display: 'flex',
-    flex: 1
-  },
+  field: {},
   formfield: {}
 });

@@ -31,17 +31,13 @@ export class RawFieldSet extends React.Component {
     !isEqual(this.props.data, nextProps.data);
 
   render() {
-    const { className, path, classes, schema = {} } = this.props;
+    const { path, classes, schema = {} } = this.props;
     const title = Localized.getStringByLanguage(schema.title);
     return (
-      <fieldset
-        className={classNames(className, classes.root, {
-          [classes.listItem]: endsWith(path, ']')
-        })}
-      >
+      <div className={classes.root}>
         {schema.title && <InputLabel>{title}</InputLabel>}
         <FieldSetContent path={path} {...this.props} />
-      </fieldset>
+      </div>
     );
   }
 }

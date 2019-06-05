@@ -167,16 +167,18 @@ class Form extends React.Component {
             {...rest}
           />
         </div>
-        <FormButtons
-          haveError={haveError}
-          onSubmit={this.onSubmit}
-          hasExternalOnSubmit={!!onSubmit}
-          onCancel={onCancel}
-          classes={classes}
-          cancelText={cancelText}
-          submitText={submitText}
-          buttonProps={buttonProps}
-        />
+        <div>
+          <FormButtons
+            haveError={haveError}
+            onSubmit={this.onSubmit}
+            hasExternalOnSubmit={!!onSubmit}
+            onCancel={onCancel}
+            classes={classes}
+            cancelText={cancelText}
+            submitText={submitText}
+            buttonProps={buttonProps}
+          />
+        </div>
       </div>
     );
   }

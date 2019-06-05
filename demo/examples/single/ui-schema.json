@@ -1,8 +1,40 @@
 {
-  "jenkins_config": {
-    "project_name": {
-      "ui:options": {
-        "disabled": true
+  "light": {
+    "ui:help": {
+      "en": "Please select the lamp control chip.",
+      "zh-CN": "请选择灯控制芯片。"
+    }
+  },
+  "lightNumber": {
+    "ui:help": {
+      "en": "Only by choosing I2C chips can more numbers be supported.",
+      "zh-CN": "只有选择I2c芯片才能支持更多数量的灯。"
+    }
+  },
+  "powerConfig": {
+    "lowPower": {
+      "ui:widget": "radio"
+    },
+    "powerOff": {
+      "ui:widget": "radio"
+    },
+    "intervalTime": {
+      "ui:widget": "radio",
+      "ui:help": {
+        "en": "Reminder interval, 10s in units.",
+        "zh-CN": "提醒间隔时间，10s为单位。"
+      }
+    }
+  },
+  "keys": {
+    "items": {
+      "ui:orientation": "row",
+      "pressTime": {
+        "ui:widget": "radio",
+        "ui:help": {
+          "en": "The unit of time is seconds.",
+          "zh-CN": "时间单位是秒。"
+        }
       }
     }
   }
