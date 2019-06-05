@@ -1,40 +1,38 @@
 export default theme => ({
-  'root': {
+  root: {
     '& $ctr': {
-      'borderStyle': 'solid',
-      'borderWidth': 1,
-      'borderColor': theme.palette.grey[500],
-      'borderRadius': '5px',
-      'flexDirection': 'column',
-      'display': 'flex',
+      borderStyle: 'solid',
+      borderWidth: 1,
+      borderColor: theme.palette.grey[500],
+      borderRadius: '5px',
+      flexDirection: 'column',
+      display: 'flex',
       '&$invalid': {
         '& $icon': {
-          color: 'red',
-        },
+          color: 'red'
+        }
       },
       '& $icon': {
-        color: 'green',
+        color: 'green'
       },
       '& >div:first-child': {
-        'display': 'flex',
-        'alignItems': 'center',
-        'borderBottomStyle': 'solid',
-        'borderBottomWidth': 1,
-        'borderColor': theme.palette.grey[500],
-        'backgroundColor': theme.palette.grey[300],
-      },
-    },
+        display: 'flex',
+        alignItems: 'center',
+        borderBottomStyle: 'solid',
+        borderBottomWidth: 1,
+        borderColor: theme.palette.grey[500],
+        backgroundColor: theme.palette.grey[300]
+      }
+    }
   },
 
-  'icon': {
+  icon: {
     fontSize: 'inherit',
-    marginLeft: theme.spacing.unit * 2,
+    marginLeft: theme.spacing(2)
   },
-  'title': {
-    'marginLeft': theme.spacing.unit * 2,
+  title: {
+    marginLeft: theme.spacing(2)
   },
-  'invalid': {
-
-  },
-  'ctr': {},
+  invalid: {},
+  ctr: {}
 });

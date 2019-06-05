@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default ({ alt, src, height, width = '100%' }) => (
-  <dev>
+export default ({ alt, src, height = 'auto', width = '100%' }) => (
+  <div>
     <img src={src} alt={alt} height={height} width={width} />
-  </dev>
+  </div>
 );

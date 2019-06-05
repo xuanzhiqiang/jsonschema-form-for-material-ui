@@ -5,15 +5,15 @@ export default {
       flex: 1,
       flexDirection: 'column',
       border: 0,
-      marginTop: theme.spacing.unit * 2
+      marginTop: theme.spacing(2)
     },
     listItem: {
-      margin: theme.spacing.unit,
-      padding: theme.spacing.unit
+      margin: theme.spacing(1),
+      padding: theme.spacing(1)
     }
   }),
   fieldSetObject: {
-    column: {
+    root: {
       display: 'flex',
       flexDirection: 'column'
     },
@@ -26,8 +26,8 @@ export default {
   },
   fieldSetArray: () => ({
     root: {
-      display: 'flex',
       flex: 1,
+      display: 'flex',
       flexDirection: 'column'
     },
     listItem: {},

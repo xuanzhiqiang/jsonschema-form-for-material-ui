@@ -15,7 +15,7 @@ export const RawFieldSetObject = ({
   ...rest
 }) => {
   const orientation =
-    uiSchema['ui:orientation'] === 'row' ? classes.row : classes.column;
+    uiSchema['ui:orientation'] === 'row' ? classes.row : classes.root;
   return (
     <div className={orientation}>
       {keys(schema.properties).map(p => {

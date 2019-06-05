@@ -7,8 +7,8 @@ const doOnChange = onChange => (e, checked) => onChange(checked);
 export default ({ path, label, value, type, onChange, ...rest }) => (
   <FormControlLabel
     control={
-    <Checkbox
-        checked={value}
+      <Checkbox
+        checked={!!value}
         value={path}
         onChange={doOnChange(onChange)}
         {...rest}

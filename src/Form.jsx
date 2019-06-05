@@ -198,6 +198,6 @@ Form.propTypes = {
   submitText: PropTypes.string,
   showErrorList: PropTypes.bool,
   showHelperError: PropTypes.bool,
-  ErrorList: PropTypes.func,
+  ErrorList: PropTypes.object,
   localized: PropTypes.object
 };

@@ -8,14 +8,14 @@ import Form from '../../src/Form';
 const formStyles = theme =>
   createStyles({
     field: {
-      paddingLeft: theme.spacing.unit * 4
+      paddingLeft: theme.spacing(4)
     },
     formButtons: {
       order: 2
     },
     root: {
       display: 'flex',
-      padding: theme.spacing.unit
+      padding: theme.spacing(1)
     }
   });
 

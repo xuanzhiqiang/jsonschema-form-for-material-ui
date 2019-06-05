@@ -1,21 +1,21 @@
 export default theme => ({
   root: {
     flex: 1,
-    marginTop: theme.spacing.unit * 3,
-    marginLeft: theme.spacing.unit * 1,
-    marginRight: theme.spacing.unit * 1
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1)
   },
   textarea: {},
   description: {
-    transform: `translateX(-${theme.spacing.unit * 2}px)`,
+    transform: `translateX(-${theme.spacing(2)}px)`,
     fontSize: '80%',
     color: theme.palette.grey[500]
   },
   withLabel: {},
   label: {
-    marginTop: theme.spacing.unit * -1
+    marginTop: theme.spacing(-1)
   },
   tooltip: {
-    marginTop: theme.spacing.unit * -2
+    marginTop: theme.spacing(-2)
   }
 });

@@ -1,33 +1,33 @@
 export default theme => ({
-  'root': {
-    'padding': theme.spacing.unit,
+  root: {
+    padding: theme.spacing(1),
     '& $ctr': {
-      'display': 'flex',
+      display: 'flex',
       '& $sourceCtr': {
-        'flex': 21,
-        'display': 'flex',
-        'marginRight': theme.spacing.unit,
-        'flexDirection': 'column',
+        flex: 21,
+        display: 'flex',
+        marginRight: theme.spacing(1),
+        flexDirection: 'column',
         '& >div:first-child': {
-          marginBottom: theme.spacing.unit,
+          marginBottom: theme.spacing(1)
         },
         '& >div:nth-child(2)': {
-          'display': 'flex',
+          display: 'flex',
           '& >div:first-child': {
             flex: 13,
-            marginRight: theme.spacing.unit,
+            marginRight: theme.spacing(1)
           },
           '& >div:nth-child(2)': {
-            flex: 21,
-          },
-        },
+            flex: 21
+          }
+        }
       },
       '& $display': {
-        flex: 13,
-      },
-    },
+        flex: 13
+      }
+    }
   },
-  'sourceCtr': {},
-  'display': {},
-  'ctr': {},
+  sourceCtr: {},
+  display: {},
+  ctr: {}
 });

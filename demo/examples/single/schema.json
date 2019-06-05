@@ -32,9 +32,9 @@
         },
         "image": {
           "type": "image",
-          "src": "http://pic37.nipic.com/20140113/8800276_184927469000_2.png",
+          "src": "https://linkplay-develop.oss-cn-beijing.aliyuncs.com/image/8ef133a3dede9bca8b466879a1f67398.png",
           "alt": "image",
-          "width": "50%"
+          "height": "100%"
         }
       }
     }
