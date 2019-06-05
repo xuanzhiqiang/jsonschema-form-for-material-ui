@@ -43,7 +43,6 @@ export class RawConfiguredField extends React.Component {
       LabelComponent,
       labelComponentProps = {},
       title,
-      className,
       componentProps = {},
       id,
       errors
@@ -55,15 +54,17 @@ export class RawConfiguredField extends React.Component {
     return (
       <FormControl
         error={errors && errors.length > 0}
-        className={classNames(classes.root, {
-          [classes.withLabel]: LabelComponent
-        })}
+        className={classNames(classes.root, classes.withLabel)}
       >
         {LabelComponent && title && (
           <LabelComponent className={classes.label} {...labelComponentProps}>
             {title}
             {descriptionText ? (
-              <Tooltip title={descriptionText} placement="top-start">
+              <Tooltip
+                className={classes.tooltip}
+                title={descriptionText}
+                placement="top-start"
+              >
                 <IconButton>
                   <InfoIcon />
                 </IconButton>
@@ -72,14 +73,15 @@ export class RawConfiguredField extends React.Component {
           </LabelComponent>
         )}
         {descriptionText && !(LabelComponent && title) ? (
-          <Tooltip title={descriptionText} placement="top-start">
-            <IconButton>
-              <InfoIcon />
-            </IconButton>
-          </Tooltip>
+          <div>
+            <Tooltip title={descriptionText} placement="top-start">
+              <IconButton>
+                <InfoIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
         ) : null}
         <Component
-          className={className && classes[className]}
           value={data || ''}
           id={labelComponentProps.htmlFor}
           type={type}

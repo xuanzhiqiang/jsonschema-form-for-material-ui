@@ -19,7 +19,7 @@ export default theme => ({
   },
   field: {
     display: 'flex',
-    flexDirection: 'column'
+    flex: 1
   },
   formfield: {}
 });

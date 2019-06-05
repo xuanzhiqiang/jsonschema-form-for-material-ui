@@ -14,9 +14,9 @@ export default theme => ({
     marginRight: theme.spacing.unit * 1
   },
   label: {
-    height: '1rem',
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center'
+    marginTop: theme.spacing.unit * -1
+  },
+  tooltip: {
+    marginTop: theme.spacing.unit * -2
   }
 });
