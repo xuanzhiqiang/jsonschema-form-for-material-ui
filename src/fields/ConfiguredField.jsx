@@ -78,6 +78,7 @@ export class RawConfiguredField extends React.Component {
         ) : null}
         <Component
           value={data || ''}
+          type={type}
           id={labelComponentProps.htmlFor}
           {...componentProps}
         />
