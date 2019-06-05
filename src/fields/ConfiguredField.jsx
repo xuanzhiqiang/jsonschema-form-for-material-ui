@@ -1,6 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
-
 import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -52,10 +50,7 @@ export class RawConfiguredField extends React.Component {
         ? this.formatErrorMessages()
         : helpT;
     return (
-      <FormControl
-        error={errors && errors.length > 0}
-        className={classNames(classes.root, classes.withLabel)}
-      >
+      <FormControl error={errors && errors.length > 0} className={classes.root}>
         {LabelComponent && title && (
           <LabelComponent className={classes.label} {...labelComponentProps}>
             {title}
@@ -84,7 +79,6 @@ export class RawConfiguredField extends React.Component {
         <Component
           value={data || ''}
           id={labelComponentProps.htmlFor}
-          type={type}
           {...componentProps}
         />
         <FormHelperText id={`${id}-help`}>{helpText}</FormHelperText>

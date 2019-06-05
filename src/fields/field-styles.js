@@ -1,6 +1,9 @@
 export default theme => ({
   root: {
-    flex: 1
+    flex: 1,
+    marginTop: theme.spacing.unit * 3,
+    marginLeft: theme.spacing.unit * 1,
+    marginRight: theme.spacing.unit * 1
   },
   textarea: {},
   description: {
@@ -8,11 +11,7 @@ export default theme => ({
     fontSize: '80%',
     color: theme.palette.grey[500]
   },
-  withLabel: {
-    marginTop: theme.spacing.unit * 3,
-    marginLeft: theme.spacing.unit * 1,
-    marginRight: theme.spacing.unit * 1
-  },
+  withLabel: {},
   label: {
     marginTop: theme.spacing.unit * -1
   },

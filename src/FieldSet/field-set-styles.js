@@ -4,7 +4,8 @@ export default {
       display: 'flex',
       flex: 1,
       flexDirection: 'column',
-      border: 0
+      border: 0,
+      marginTop: theme.spacing.unit * 2
     },
     listItem: {
       margin: theme.spacing.unit,
