@@ -21,7 +21,7 @@
   "license": "ISC",
   "main": "index.js",
   "name": "jsonschema-form-for-material-ui-linkplay",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/xuanzhiqiang/jsonschema-form-for-material-ui-linkplay.git"
