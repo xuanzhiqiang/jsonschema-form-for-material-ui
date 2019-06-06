@@ -15,6 +15,7 @@ export default theme => ({
   },
   button: {
     fontSize: '100%',
+    marginTop: theme.spacing(5),
     marginLeft: theme.spacing(2)
   },
   field: {},
