@@ -12,7 +12,6 @@ const getClassName = ({ uiSchema = {} }) => {
 
 export default props => {
   const { schema } = props;
-  // const title = uiSchema['ui:title'] || schema.title;
   const title = Localized.getStringByLanguage(schema.title);
   return {
     title,
