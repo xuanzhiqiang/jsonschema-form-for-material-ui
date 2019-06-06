@@ -24,6 +24,13 @@ export function mergeObjects(obj1, obj2, concatArrays = false) {
   }, acc);
 }
 
+export function isConstant(schema) {
+  return (
+    (Array.isArray(schema.enum) && schema.enum.length === 1) ||
+    schema.hasOwnProperty('const')
+  );
+}
+
 export function isSelect(schema) {
   const altSchemas = schema.oneOf || schema.anyOf;
   if (Array.isArray(schema.enum)) {
