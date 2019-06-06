@@ -2,7 +2,6 @@ export default {
   fieldSet: theme => ({
     root: {
       display: 'flex',
-      flex: 1,
       flexDirection: 'column',
       marginTop: theme.spacing(1)
     },
