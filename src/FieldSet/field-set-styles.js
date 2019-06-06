@@ -37,7 +37,6 @@ export default {
   reorderable: {
     root: {
       display: 'flex',
-      flex: 1,
       alignItems: 'baseline',
       justifyContent: 'space-between'
     },
