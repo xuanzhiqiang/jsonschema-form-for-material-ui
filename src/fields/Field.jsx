@@ -13,6 +13,7 @@ export default props => {
     Localized.getStringByLanguage(uiSchema['ui:description']) ||
     Localized.getStringByLanguage(schema.description);
   const helpText = Localized.getStringByLanguage(uiSchema['ui:help']);
+  const errorHelp = Localized.getStringByLanguage(uiSchema['ui:errorHelp']);
 
   return (
     <ConfiguredField
@@ -21,6 +22,7 @@ export default props => {
       type={type}
       descriptionText={descriptionText}
       helpText={helpText}
+      errorHelp={errorHelp}
       showHelperError={showHelperError}
       errors={errors}
       {...configuredProps}

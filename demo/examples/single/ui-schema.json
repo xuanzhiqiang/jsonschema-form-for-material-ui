@@ -13,10 +13,18 @@
   },
   "powerConfig": {
     "lowPower": {
-      "ui:widget": "radio"
+      "ui:widget": "radio",
+      "ui:help": {
+        "en": "Input range 1-100",
+        "zh-CN": "输入范围 1-100"
+      }
     },
     "powerOff": {
-      "ui:widget": "radio"
+      "ui:widget": "radio",
+      "ui:help": {
+        "en": "Input range 1-100",
+        "zh-CN": "输入范围 1-100"
+      }
     },
     "intervalTime": {
       "ui:widget": "radio",
@@ -34,6 +42,10 @@
         "ui:help": {
           "en": "The unit of time is seconds.",
           "zh-CN": "时间单位是秒。"
+        },
+        "ui:errorHelp": {
+          "en": "It must be an integer.",
+          "zh-CN": "必须是整数。"
         }
       }
     }

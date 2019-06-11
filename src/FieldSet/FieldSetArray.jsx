@@ -22,6 +22,7 @@ export const RawFieldSetArray = props => {
     onMoveItemUp,
     onMoveItemDown,
     onDeleteItem,
+    errors,
     ...rest
   } = props;
 
@@ -35,6 +36,7 @@ export const RawFieldSetArray = props => {
                 `${path}[${idx}]` // eslint-disable-line react/no-array-index-key
               }
               path={`${path}[${startIdx + idx}]`}
+              errors={errors[idx]}
               required={schema.required}
               schema={schema.items}
               data={d}

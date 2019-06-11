@@ -75,6 +75,7 @@
           "maximum": 100
         },
         "intervalTime": {
+          "pattern": "^[1-9]\\d*$",
           "title": {
             "en": "Reminder interval",
             "zh-CN": "提醒间隔"
@@ -84,6 +85,7 @@
       }
     },
     "image": {
+      "title": " ",
       "type": "image",
       "src": "https://linkplay-develop.oss-cn-beijing.aliyuncs.com/image/8ef133a3dede9bca8b466879a1f67398.png",
       "alt": "image",
@@ -96,6 +98,7 @@
       },
       "type": "array",
       "items": {
+        "default": {},
         "type": "object",
         "properties": {
           "key": {
@@ -115,8 +118,7 @@
               "KEY8",
               "KEY6+KEY7",
               "KEY7+KEY8"
-            ],
-            "default": "KEY1"
+            ]
           },
           "event": {
             "title": {
@@ -135,8 +137,7 @@
               "mute",
               "factoryreset",
               "wpssetup"
-            ],
-            "default": "talk"
+            ]
           },
           "pressType": {
             "title": {
@@ -149,6 +150,7 @@
           },
           "pressTime": {
             "type": "integer",
+            "pattern": "^[1-9]\\d*$",
             "title": {
               "en": "Press Time",
               "zh-CN": "按压时长"

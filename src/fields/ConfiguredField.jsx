@@ -25,7 +25,8 @@ export class RawConfiguredField extends React.Component {
   };
 
   formatErrorMessages = () => {
-    const { errors } = this.props;
+    const { errors, errorHelp = undefined } = this.props;
+    if (errorHelp) return errorHelp;
     return errors.map(error => error.message).toString();
   };
 
