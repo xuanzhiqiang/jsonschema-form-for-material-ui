@@ -71,6 +71,7 @@ export default ({
     rv.onChange = onChange;
   } else if (type === 'image') {
     rv.src = schema.src;
+    rv.small = schema.small;
     rv.alt = schema.alt;
     rv.height = schema.height;
     rv.width = schema.width;
