@@ -81,8 +81,6 @@ export default ({
     rv.width = schema.width;
     rv.height = schema.height;
     rv.previewType = schema.previewType;
-    rv.checkDropFile = schema.checkDropFile || (() => true);
-    rv.onUploadImage = schema.onUploadImage || (() => {});
   } else {
     rv.inputProps = {
       id: htmlId

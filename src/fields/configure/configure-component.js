@@ -14,7 +14,12 @@ const changeDataDefault = (configuredProps, { schema = {} }) => {
   const { type } = schema;
   const temp = { ...configuredProps };
   if (type === 'dropzone') {
-    temp.data = { preview: '', uploading: false };
+    temp.data = {
+      preview: '',
+      uploading: false,
+      checkDropFile: () => true,
+      onUploadImage: () => {}
+    };
   }
   return temp;
 };

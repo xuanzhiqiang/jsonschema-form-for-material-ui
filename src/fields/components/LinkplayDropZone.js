@@ -67,8 +67,6 @@ const styles = theme => ({
 class LinkplayDropZone extends React.Component {
   constructor(props) {
     super(props);
-
-    this.image = null;
     this.state = {
       error: false,
       previewImage: ''
@@ -115,7 +113,8 @@ class LinkplayDropZone extends React.Component {
 
     image.addEventListener('load', () => {
       this.setState({ previewImage: image.src, error: false, errorTip: ' ' });
-      const { checkDropFile } = this.props;
+      const { value = {} } = this.props;
+      const { checkDropFile } = value;
       if (checkDropFile) {
         if (checkDropFile(image)) {
           this.uploadImage(tempImage);
@@ -131,7 +130,8 @@ class LinkplayDropZone extends React.Component {
   };
 
   uploadImage = file => {
-    const { onUploadImage } = this.props;
+    const { value = {} } = this.props;
+    const { onUploadImage } = value;
     if (onUploadImage) {
       onUploadImage(file);
     }
@@ -232,8 +232,6 @@ LinkplayDropZone.propTypes = {
   height: PropTypes.number.isRequired,
   previewType: PropTypes.string.isRequired,
 
-  checkDropFile: PropTypes.func,
-  onUploadImage: PropTypes.func,
   // eslint-disable-next-line react/forbid-prop-types
   value: PropTypes.object
 };
@@ -242,11 +240,11 @@ LinkplayDropZone.propTypes = {
 LinkplayDropZone.defaultProps = {
   value: {
     preview: '',
-    uploading: true
+    uploading: true,
+    checkDropFile: () => true,
+    onUploadImage: () => {}
   },
-  disabled: false,
-  checkDropFile: undefined,
-  onUploadImage: undefined
+  disabled: false
 };
 
 export default withStyles(styles)(LinkplayDropZone);
