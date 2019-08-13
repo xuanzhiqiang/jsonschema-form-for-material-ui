@@ -10,16 +10,15 @@ const getClassName = ({ uiSchema = {} }) => {
   return widget === 'textarea' ? 'textarea' : null;
 };
 
-const changeDataDefault = (configuredProps, { schema = {} }) => {
+const changeDataDefault = (configuredProps, { schema = {}, errors }) => {
   const { type } = schema;
   const temp = { ...configuredProps };
   if (type === 'dropzone') {
     temp.data = {
       preview: '',
-      uploading: false,
-      checkDropFile: () => true,
-      onUploadImage: () => {}
+      uploading: false
     };
+    temp.componentProps.error = errors && errors.length > 0;
   }
   return temp;
 };

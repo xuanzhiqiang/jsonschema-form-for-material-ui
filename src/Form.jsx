@@ -61,14 +61,16 @@ class Form extends React.Component {
 
   componentWillReceiveProps = nextProps => {
     const nextState = this.getStateFromProps(nextProps);
+    // eslint-disable-next-line react/destructuring-assignment
     if (!isEqual(this.state.data, nextState.data)) {
       this.setState(nextState);
     }
   };
 
   onChange = field => value => {
-    // eslint-disable-next-line react/no-access-state-in-setstate
+    // eslint-disable-next-line react/destructuring-assignment
     const data = updateFormData(this.state.data, field, value);
+    // eslint-disable-next-line react/destructuring-assignment
     const errors = getValidationResult(this.props.schema, data);
     const haveError = hasErrors(errors);
     this.setState(() => {

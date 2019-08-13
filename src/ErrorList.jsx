@@ -29,7 +29,14 @@ const Errors = ({ errors, anchor, classes }) => (
   <ListItem
     button
     onClick={() => {
-      document.getElementById(anchor).focus(); // eslint-disable-line
+      const element = document.getElementById(anchor); // eslint-disable-line
+      if (element) {
+        if (element.type === 'file') {
+          element.click();
+        } else {
+          element.focus();
+        }
+      }
     }}
   >
     {errors.map(v => (
@@ -40,6 +47,7 @@ const Errors = ({ errors, anchor, classes }) => (
 );
 
 function isObject(thing) {
+  // eslint-disable-next-line no-undef
   if (typeof File !== 'undefined' && thing instanceof File) {
     return false;
   }
@@ -57,6 +65,7 @@ export const hasErrors = errors => {
 
   Object.values(errors).forEach(error => {
     if (!errorsFlag && Array.isArray(error) && error.length > 0) {
+      // eslint-disable-next-line no-prototype-builtins
       if (error[0].hasOwnProperty('message')) {
         errorsFlag = true;
       } else {
@@ -83,6 +92,7 @@ function allErrorsItem({ errors, field, classes, root }) {
       anchor = `${field}.${v}`;
     }
     if (Array.isArray(errors[v]) && errors[v].length > 0) {
+      // eslint-disable-next-line no-prototype-builtins
       if (errors[v][0].hasOwnProperty('message')) {
         return (
           <Errors

@@ -79,6 +79,12 @@ class LinkplayDropZone extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this._renderPreview(this.props, nextProps);
+
+    const { error: preError } = this.props;
+    const { error } = nextProps;
+    if (error !== preError) {
+      this.setState({ error });
+    }
   }
 
   _renderPreview = (props, nextProps) => {
@@ -113,15 +119,7 @@ class LinkplayDropZone extends React.Component {
 
     image.addEventListener('load', () => {
       this.setState({ previewImage: image.src, error: false, errorTip: ' ' });
-      const { value = {} } = this.props;
-      const { checkDropFile } = value;
-      if (checkDropFile) {
-        if (checkDropFile(image)) {
-          this.uploadImage(tempImage);
-        } else {
-          this.setState({ error: true, errorTip: 'Check Error' });
-        }
-      }
+      this.uploadImage(tempImage, image);
     });
   };
 
@@ -129,11 +127,10 @@ class LinkplayDropZone extends React.Component {
     this.setState({ error: true, errorTip: 'Wrong Format' });
   };
 
-  uploadImage = file => {
-    const { value = {} } = this.props;
-    const { onUploadImage } = value;
-    if (onUploadImage) {
-      onUploadImage(file);
+  uploadImage = (file, image) => {
+    const { onChange } = this.props;
+    if (onChange) {
+      onChange(file, image);
     }
   };
 
@@ -160,6 +157,7 @@ class LinkplayDropZone extends React.Component {
 
   render() {
     const {
+      id,
       classes,
       tip,
       accept,
@@ -199,7 +197,7 @@ class LinkplayDropZone extends React.Component {
                   error ? classes.errorStyle : classes.normalStyle
                 )}
               >
-                <input {...getInputProps()} />
+                <input id={id} {...getInputProps()} />
                 {value.uploading ? (
                   <CircularProgress className={classes.progress} />
                 ) : (
@@ -231,6 +229,7 @@ LinkplayDropZone.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   previewType: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
 
   // eslint-disable-next-line react/forbid-prop-types
   value: PropTypes.object
@@ -240,11 +239,10 @@ LinkplayDropZone.propTypes = {
 LinkplayDropZone.defaultProps = {
   value: {
     preview: '',
-    uploading: true,
-    checkDropFile: () => true,
-    onUploadImage: () => {}
+    uploading: true
   },
-  disabled: false
+  disabled: false,
+  onChange: () => {}
 };
 
 export default withStyles(styles)(LinkplayDropZone);

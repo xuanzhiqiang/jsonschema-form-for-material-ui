@@ -36,6 +36,9 @@ const onCheckboxChangeHandler = (onChange, title) => e => {
   }
   return onChange(spec);
 };
+const onDropZoneChangeHandler = onChange => (file, image) => {
+  if (file !== undefined && image !== undefined) onChange({ file, image });
+};
 
 export default ({
   schema = {},
@@ -81,6 +84,7 @@ export default ({
     rv.width = schema.width;
     rv.height = schema.height;
     rv.previewType = schema.previewType;
+    rv.onChange = onChange && onDropZoneChangeHandler(onChange);
   } else if (type === 'link') {
     rv.linktext = schema.linktext;
   } else {

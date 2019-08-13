@@ -21,7 +21,7 @@ const getFieldSpec = (schema, value) => {
   if (value === null) {
     return { $set: [] };
   }
-  if (typeof value !== 'object') {
+  if (typeof value !== 'object' || schema.type === 'dropzone') {
     return { $set: validationResult(schema, value) };
   }
   if (schema.type === 'array') {

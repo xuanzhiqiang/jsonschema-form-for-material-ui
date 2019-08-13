@@ -10,7 +10,6 @@ import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 
 import fieldStyles from './field-styles';
-// import PopoverInfo from './components/PopoverInfo'; removed for fix animation problems
 
 // for unit testing only
 export class RawConfiguredField extends React.Component {
@@ -20,9 +19,10 @@ export class RawConfiguredField extends React.Component {
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    const { data: preData } = this.props;
-    const { data } = nextProps;
+    const { data: preData, componentProps: preComponentProps } = this.props;
+    const { data, componentProps } = nextProps;
     if (!isEqual(preData, data)) return true;
+    if (!isEqual(preComponentProps.error, componentProps.error)) return true;
     if (this.state.anchorEl !== nextState.anchorEl) return true;
     return false;
   };

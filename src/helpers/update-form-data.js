@@ -19,23 +19,27 @@ const applyAtPath = (path, data, spec) => {
   if (arrMatch) {
     const subPath = arrMatch[1];
     const index = Number(arrMatch[2]);
-    return { [subPath]: { [index]: applyAtPath(arrMatch[4], data[subPath][index], spec) } };
+    return {
+      [subPath]: {
+        [index]: applyAtPath(arrMatch[4], data[subPath][index], spec)
+      }
+    };
   }
   return {};
 };
 
 const setValueSpec = value => () => {
-  if (typeof value === 'object' && size(value) === 1) return value;
-  return ({ $set: value });
+  // if (typeof value === 'object' && size(value) === 1) return value;
+  return { $set: value };
 };
-const pushItemSpec = value => (data) => {
-  if (data) return ({ $push: [value] });
-  return ({ $set: [value] });
+const pushItemSpec = value => data => {
+  if (data) return { $push: [value] };
+  return { $set: [value] };
 };
 const removeItemSpec = idx => () => ({ $splice: [[idx, 1]] });
 const moveItemSpec = (idx, direction) => value => ({
   [idx]: { $set: value[idx + direction] },
-  [idx + direction]: { $set: value[idx] },
+  [idx + direction]: { $set: value[idx] }
 });
 
 export default (data, path, value) => {
