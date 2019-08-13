@@ -85,11 +85,13 @@
       "accept": "image/png",
       "previewType": "png"
     },
+    "link": {
+      "linktext": "Click to view PRD document",
+      "type": "link"
+    },
     "image": {
       "title": " ",
       "type": "image",
-      "small": "https://linkplay-develop.oss-cn-beijing.aliyuncs.com/image/8ef133a3dede9bca8b466879a1f67398.png",
-      "src": "https://linkplay-develop.oss-cn-beijing.aliyuncs.com/image/8ef133a3dede9bca8b466879a1f67398.png",
       "alt": "image",
       "width": "100%"
     },
@@ -161,6 +163,31 @@
               "en": "Press Time",
               "zh-CN": "按压时长"
             }
+          }
+        }
+      }
+    },
+    "introduction_picture": {
+      "title": {
+        "en": "Introduction Picture",
+        "zh-CN": "介绍图片"
+      },
+      "help": {
+        "en": "App's introduction. Size requirements for the `1242 * 2208` ` 2048 * 2732` each of three to five. Can not have alpha.",
+        "zh-CN": "应用程序简介。'1242*2208` `2048*2732' 的尺寸要求，三到五个。不能有字母。"
+      },
+      "type": "array",
+      "items": {
+        "default": {},
+        "type": "object",
+        "properties": {
+          "dropzone": {
+            "type": "dropzone",
+            "tip": "Size: 1242*2208 or 2048*2732 format: png",
+            "width": 300,
+            "height": 300,
+            "accept": "image/png",
+            "previewType": "png"
           }
         }
       }

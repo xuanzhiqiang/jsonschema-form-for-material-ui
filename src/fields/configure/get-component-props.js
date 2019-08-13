@@ -81,6 +81,8 @@ export default ({
     rv.width = schema.width;
     rv.height = schema.height;
     rv.previewType = schema.previewType;
+  } else if (type === 'link') {
+    rv.linktext = schema.linktext;
   } else {
     rv.inputProps = {
       id: htmlId

@@ -1,4 +1,5 @@
 import React from 'react';
+import isEqual from 'lodash/isEqual';
 import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -19,7 +20,9 @@ export class RawConfiguredField extends React.Component {
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    if (this.props.data !== nextProps.data) return true;
+    const { data: preData } = this.props;
+    const { data } = nextProps;
+    if (!isEqual(preData, data)) return true;
     if (this.state.anchorEl !== nextState.anchorEl) return true;
     return false;
   };

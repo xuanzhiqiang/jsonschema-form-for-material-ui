@@ -6,7 +6,8 @@ const {
   Select,
   Checkbox,
   Image,
-  DropZone
+  DropZone,
+  Link
 } = require('../components');
 
 export default ({ schema, uiSchema = {} }) => {
@@ -30,6 +31,9 @@ export default ({ schema, uiSchema = {} }) => {
   }
   if (type === 'dropzone') {
     return DropZone;
+  }
+  if (type === 'link') {
+    return Link;
   }
   return Input;
 };
