@@ -98,6 +98,10 @@
         "en": "Defining keys",
         "zh-CN": "定义按键"
       },
+      "help": {
+        "en": "图片1～3张",
+        "zh-CN": "图片1～3张"
+      },
       "type": "array",
       "items": {
         "default": {},
