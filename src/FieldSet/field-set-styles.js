@@ -5,29 +5,21 @@ export default {
       flexDirection: 'column',
       marginTop: theme.spacing(1)
     },
+    title: {
+      fontSize: 20,
+      color: 'black',
+      marginTop: theme.spacing(3)
+    },
     listItem: {
       margin: theme.spacing(1),
       padding: theme.spacing(1)
     }
   }),
-  fieldSetObject: {
-    root: {
-      display: 'flex',
-      flexDirection: 'column'
-    },
-    row: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap'
-    },
-    listItem: {}
-  },
   fieldSetArray: () => ({
     root: {
       display: 'flex',
       flexDirection: 'column'
     },
-    listItem: {},
     addItemBtn: {
       display: 'flex',
       justifyContent: 'flex-end'
@@ -46,9 +38,5 @@ export default {
       display: 'flex',
       flexDirection: 'row'
     }
-  }),
-  fieldSetContent: {
-    root: {},
-    listItem: {}
-  }
+  })
 };

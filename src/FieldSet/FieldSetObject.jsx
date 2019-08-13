@@ -2,7 +2,18 @@ import React from 'react';
 import keys from 'lodash/keys';
 import { withStyles } from '@material-ui/core/styles';
 import FormField from '../FormField';
-import fieldSetStyles from './field-set-styles';
+
+const styles = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  row: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  }
+};
 
 export const RawFieldSetObject = ({
   className,
@@ -20,6 +31,7 @@ export const RawFieldSetObject = ({
     <div className={orientation}>
       {keys(schema.properties).map(p => {
         const newPath = path ? `${path}.${p}` : p;
+        // eslint-disable-next-line no-prototype-builtins
         const error = errors && errors.hasOwnProperty(p) ? errors[p] : null;
         return (
           <FormField
@@ -38,4 +50,4 @@ export const RawFieldSetObject = ({
     </div>
   );
 };
-export default withStyles(fieldSetStyles.fieldSetObject)(RawFieldSetObject);
+export default withStyles(styles)(RawFieldSetObject);

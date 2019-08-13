@@ -75,6 +75,14 @@ export default ({
     rv.alt = schema.alt;
     rv.height = schema.height;
     rv.width = schema.width;
+  } else if (type === 'dropzone') {
+    rv.tip = schema.tip;
+    rv.accept = schema.accept;
+    rv.width = schema.width;
+    rv.height = schema.height;
+    rv.previewType = schema.previewType;
+    rv.checkDropFile = schema.checkDropFile || (() => true);
+    rv.onUploadImage = schema.onUploadImage || (() => {});
   } else {
     rv.inputProps = {
       id: htmlId

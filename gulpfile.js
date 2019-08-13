@@ -3,6 +3,10 @@ const path = require('path');
 const babel = require('gulp-babel');
 const mocha = require('gulp-mocha');
 
+const imagemin = require('gulp-imagemin');
+const cache = require('gulp-cache');
+const del = require('del');
+
 gulp.task('build', () =>
   gulp
     .src('src/**/*.{js,jsx}')
@@ -13,6 +17,22 @@ gulp.task('build', () =>
       })
     )
     .pipe(gulp.dest('dist'))
+);
+
+// Images打包压缩代码
+gulp.task('images', () =>
+  gulp
+    .src('src/image/*')
+    .pipe(
+      cache(
+        imagemin({
+          optimizationLevel: 3,
+          progressive: true,
+          interlaced: true
+        })
+      )
+    )
+    .pipe(gulp.dest('dist/image'))
 );
 
 gulp.task(
@@ -29,3 +49,5 @@ gulp.task(
     )
   )
 );
+
+gulp.task('clean', cb => del(['dist/'], cb));

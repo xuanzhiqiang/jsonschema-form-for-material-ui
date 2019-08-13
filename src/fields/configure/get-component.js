@@ -1,7 +1,13 @@
 // import Input, { InputLabel } from 'material-ui/Input'; // eslint-disable-line import/no-named-default
 const Input = require('@material-ui/core/Input').default;
 
-const { RadioGroup, Select, Checkbox, Image } = require('../components');
+const {
+  RadioGroup,
+  Select,
+  Checkbox,
+  Image,
+  DropZone
+} = require('../components');
 
 export default ({ schema, uiSchema = {} }) => {
   const widget = uiSchema['ui:widget'];
@@ -21,6 +27,9 @@ export default ({ schema, uiSchema = {} }) => {
   }
   if (type === 'image') {
     return Image;
+  }
+  if (type === 'dropzone') {
+    return DropZone;
   }
   return Input;
 };

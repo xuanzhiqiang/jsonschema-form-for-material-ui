@@ -47,15 +47,8 @@
     },
     "powerConfig": {
       "type": "object",
+      "title": "123",
       "properties": {
-        "power": {
-          "title": {
-            "en": "Have batteries",
-            "zh-CN": "有电池"
-          },
-          "type": "boolean",
-          "default": false
-        },
         "lowPower": {
           "title": {
             "en": "Low battery reminders percentage",
@@ -84,9 +77,18 @@
         }
       }
     },
+    "dropzone": {
+      "type": "dropzone",
+      "tip": "图片上传",
+      "width": 300,
+      "height": 300,
+      "accept": "image/png",
+      "previewType": "png"
+    },
     "image": {
       "title": " ",
       "type": "image",
+      "small": "https://linkplay-develop.oss-cn-beijing.aliyuncs.com/image/8ef133a3dede9bca8b466879a1f67398.png",
       "src": "https://linkplay-develop.oss-cn-beijing.aliyuncs.com/image/8ef133a3dede9bca8b466879a1f67398.png",
       "alt": "image",
       "width": "100%"

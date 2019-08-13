@@ -10,10 +10,19 @@ const getClassName = ({ uiSchema = {} }) => {
   return widget === 'textarea' ? 'textarea' : null;
 };
 
+const changeDataDefault = (configuredProps, { schema = {} }) => {
+  const { type } = schema;
+  const temp = { ...configuredProps };
+  if (type === 'dropzone') {
+    temp.data = { preview: '', uploading: false };
+  }
+  return temp;
+};
+
 export default props => {
   const { schema } = props;
   const title = Localized.getStringByLanguage(schema.title);
-  return {
+  const configuredProps = {
     title,
     className: getClassName(props),
     Component: getComponent(props),
@@ -22,4 +31,5 @@ export default props => {
     labelComponentProps: getLabelComponentProps(props),
     popUpOffset: props.popUpOffset
   };
+  return changeDataDefault(configuredProps, props);
 };

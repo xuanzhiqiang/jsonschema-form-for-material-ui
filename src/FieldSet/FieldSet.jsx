@@ -1,6 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
-import endsWith from 'lodash/endsWith';
 import isEqual from 'lodash/isEqual';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -21,22 +19,20 @@ export const RawFieldSetContent = props => {
   return null;
 };
 
-export const FieldSetContent = withStyles(fieldSetStyles.fieldSetContent)(
-  RawFieldSetContent
-);
-
 // for unit testing
 export class RawFieldSet extends React.Component {
   shouldComponentUpdate = nextProps =>
     !isEqual(this.props.data, nextProps.data);
 
   render() {
-    const { path, classes, schema = {} } = this.props;
+    const { path, classes, schema = {}, ...ret } = this.props;
     const title = Localized.getStringByLanguage(schema.title);
     return (
       <div className={classes.root}>
-        {schema.title && <InputLabel>{title}</InputLabel>}
-        <FieldSetContent path={path} {...this.props} />
+        {schema.title && (
+          <InputLabel className={classes.title}>{title}</InputLabel>
+        )}
+        <RawFieldSetContent path={path} schema={schema} {...ret} />
       </div>
     );
   }
