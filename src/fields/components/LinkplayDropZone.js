@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Dropzone from 'react-dropzone';
 import { withStyles } from '@material-ui/core/styles';
-
 import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 const pngFormat = require('../../image/png-format.png');
 const pngFormatError = require('../../image/png-format-error.png');
@@ -68,7 +66,7 @@ class LinkplayDropZone extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: false,
+      error: props.error,
       previewImage: ''
     };
   }
@@ -83,13 +81,20 @@ class LinkplayDropZone extends React.Component {
     const { error: preError } = this.props;
     const { error } = nextProps;
     if (error !== preError) {
-      this.setState({ error });
+      if (!error) {
+        this.setState({ error: false, errorTip: ' ' });
+      } else {
+        this.setState({ error: true });
+      }
     }
   }
 
   _renderPreview = (props, nextProps) => {
-    const { value: prePreview = '', previewtype: preType } = props;
-    const { value: preview = '', previewtype } = nextProps;
+    const { value: preValue = {}, previewtype: preType } = props;
+    const { value = {}, previewtype } = nextProps;
+
+    const { preview: prePreview = '' } = preValue;
+    const { preview = '' } = value;
 
     if (prePreview !== preview || preType !== previewtype) {
       let previewImage = '';
@@ -115,7 +120,7 @@ class LinkplayDropZone extends React.Component {
     image.src = URL.createObjectURL(tempImage);
 
     image.addEventListener('load', () => {
-      this.setState({ previewImage: image.src, error: false, errorTip: ' ' });
+      this.setState({ previewImage: image.src });
       this.uploadImage(tempImage, image);
     });
   };
@@ -153,16 +158,7 @@ class LinkplayDropZone extends React.Component {
   };
 
   render() {
-    const {
-      id,
-      classes,
-      tip,
-      accept,
-      width,
-      height,
-      disabled,
-      value = { uploading: false }
-    } = this.props;
+    const { id, classes, tip, accept, width, height, disabled } = this.props;
     const { error, errorTip } = this.state;
     return (
       <div style={{ marginTop: '1em' }}>
@@ -195,11 +191,7 @@ class LinkplayDropZone extends React.Component {
                 )}
               >
                 <input id={id} {...getInputProps()} />
-                {value.uploading ? (
-                  <CircularProgress className={classes.progress} />
-                ) : (
-                  this._renderContent()
-                )}
+                {this._renderContent()}
               </div>
             </div>
           )}
@@ -229,12 +221,14 @@ LinkplayDropZone.propTypes = {
   onChange: PropTypes.func,
 
   // eslint-disable-next-line react/forbid-prop-types
-  value: PropTypes.string
+  value: PropTypes.object
 };
 
 // 为属性指定默认值:
 LinkplayDropZone.defaultProps = {
-  value: '',
+  value: {
+    preview: ''
+  },
   disabled: false,
   onChange: () => {}
 };

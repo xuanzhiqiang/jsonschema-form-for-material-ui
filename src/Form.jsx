@@ -130,9 +130,9 @@ class Form extends React.Component {
 
   notifyChange = () => {
     const { onChange } = this.props;
-    const { data } = this.state;
+    const { data, haveError } = this.state;
     if (onChange) {
-      onChange({ formData: data });
+      onChange({ formData: data, haveError });
     }
   };
 

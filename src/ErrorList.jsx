@@ -84,6 +84,8 @@ function allErrorsItem({
   key = undefined,
   array = false
 }) {
+  if (!isObject(errors) && !isArray(errors)) return [];
+
   // 1、计算锚点
   let anchor = id;
   if (key !== undefined) {

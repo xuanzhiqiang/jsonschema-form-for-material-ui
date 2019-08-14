@@ -13,7 +13,8 @@ const getClassName = ({ uiSchema = {} }) => {
 const changeDataDefault = (configuredProps, { schema = {}, errors }) => {
   const { type } = schema;
   const temp = { ...configuredProps };
-  if (type === 'dropzone') {
+  if (['dropzone', 'DualDropZone'].indexOf(type) !== -1) {
+    temp.data = {};
     temp.componentProps.error = errors && errors.length > 0;
   }
   return temp;
