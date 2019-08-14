@@ -88,16 +88,13 @@ class LinkplayDropZone extends React.Component {
   }
 
   _renderPreview = (props, nextProps) => {
-    const { value: preValue = {}, previewType: preType } = props;
-    const { value = {}, previewType } = nextProps;
+    const { value: prePreview = '', previewtype: preType } = props;
+    const { value: preview = '', previewtype } = nextProps;
 
-    const { preview: prePreview = '' } = preValue;
-    const { preview = '' } = value;
-
-    if (prePreview !== preview || preType !== previewType) {
+    if (prePreview !== preview || preType !== previewtype) {
       let previewImage = '';
       if (preview) {
-        if (previewType === 'svg') {
+        if (previewtype === 'svg') {
           previewImage = `data:image/svg+xml;utf-8,${preview}`;
         } else {
           previewImage = `data:image/png;base64,${preview}`;
@@ -168,7 +165,7 @@ class LinkplayDropZone extends React.Component {
     } = this.props;
     const { error, errorTip } = this.state;
     return (
-      <div>
+      <div style={{ marginTop: '1em' }}>
         <Dropzone
           accept={accept}
           disabled={disabled}
@@ -179,7 +176,7 @@ class LinkplayDropZone extends React.Component {
             <div className={classes.rootStyle}>
               <div className={classes.titleStyle}>
                 <Typography
-                  variant="body1"
+                  variant="body2"
                   className={classNames(
                     classes.titleText,
                     error ? classes.errorText : classes.normalText
@@ -228,19 +225,16 @@ LinkplayDropZone.propTypes = {
   accept: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  previewType: PropTypes.string.isRequired,
+  previewtype: PropTypes.string.isRequired,
   onChange: PropTypes.func,
 
   // eslint-disable-next-line react/forbid-prop-types
-  value: PropTypes.object
+  value: PropTypes.string
 };
 
 // 为属性指定默认值:
 LinkplayDropZone.defaultProps = {
-  value: {
-    preview: '',
-    uploading: true
-  },
+  value: '',
   disabled: false,
   onChange: () => {}
 };

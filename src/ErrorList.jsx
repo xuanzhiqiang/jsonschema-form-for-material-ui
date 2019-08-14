@@ -1,7 +1,7 @@
 import React from 'react';
-import keys from 'lodash/keys';
+import has from 'lodash/has';
 import forOwn from 'lodash/forOwn';
-import filter from 'lodash/filter';
+import isArray from 'lodash/isArray';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -25,13 +25,14 @@ const errorsStyles = {
 
 const Error = ({ errors }) => <ListItemText primary={errors.message} />;
 
+const clickAction = ['file'];
 const Errors = ({ errors, anchor, classes }) => (
   <ListItem
     button
     onClick={() => {
       const element = document.getElementById(anchor); // eslint-disable-line
       if (element) {
-        if (element.type === 'file') {
+        if (clickAction.indexOf(element.type) !== -1) {
           element.click();
         } else {
           element.focus();
@@ -40,9 +41,8 @@ const Errors = ({ errors, anchor, classes }) => (
     }}
   >
     {errors.map(v => (
-      <Error key={v} errors={v} classes={classes} />
-    )) // eslint-disable-line react/no-array-index-key,max-len
-    }
+      <Error key={v} errors={v[0]} classes={classes} />
+    ))}
   </ListItem>
 );
 
@@ -51,95 +51,94 @@ function isObject(thing) {
   if (typeof File !== 'undefined' && thing instanceof File) {
     return false;
   }
-  return typeof thing === 'object' && thing !== null && !Array.isArray(thing);
+  return typeof thing === 'object' && thing !== null && !isArray(thing);
 }
 
+// 判断是否有错误
 export const hasErrors = errors => {
+  // 1、不是array和object的直接返回false
+  if (!isObject(errors) && !isArray(errors)) return false;
+
+  // 2、判断是否符合条件
   let errorsFlag = false;
-
-  Object.values(errors).forEach(error => {
-    if (!errorsFlag && isObject(error)) {
-      errorsFlag = hasErrors(error);
+  if (isObject(errors)) {
+    if (has(errors, 'rule') && has(errors, 'message')) {
+      return true;
     }
-  });
+  }
 
-  Object.values(errors).forEach(error => {
-    if (!errorsFlag && Array.isArray(error) && error.length > 0) {
-      // eslint-disable-next-line no-prototype-builtins
-      if (error[0].hasOwnProperty('message')) {
-        errorsFlag = true;
-      } else {
-        Object.values(error).forEach(e => {
-          if (!errorsFlag) {
-            errorsFlag = hasErrors(e);
-          }
-        });
-      }
-    }
+  // 3、不符合条件的递归遍历
+  forOwn(errors, e => {
+    errorsFlag = hasErrors(e);
+    return !errorsFlag; // return false --> forOwn()会提前结束遍历
   });
   return errorsFlag;
 };
 
-function allErrorsItem({ errors, field, classes, root }) {
-  let items = filter(keys(errors), k => {
-    const v = errors[k];
-    return v && v.length > 0;
-  }).map(v => {
-    let anchor;
-    if (root === field) {
-      anchor = `${field}_${v}`;
+// 把错误条目转化为UI条目
+function allErrorsItem({
+  id,
+  errors,
+  classes,
+  field = undefined,
+  key = undefined,
+  array = false
+}) {
+  // 1、计算锚点
+  let anchor = id;
+  if (key !== undefined) {
+    if (array) {
+      anchor = id === field ? `${field}_[${key}]` : `${field}[${key}]`;
     } else {
-      anchor = `${field}.${v}`;
+      anchor = id === field ? `${field}_${key}` : `${field}.${key}`;
     }
-    if (Array.isArray(errors[v]) && errors[v].length > 0) {
-      // eslint-disable-next-line no-prototype-builtins
-      if (errors[v][0].hasOwnProperty('message')) {
-        return (
-          <Errors
-            key={v}
-            errors={errors[v]}
-            anchor={anchor}
-            classes={classes}
-          />
-        );
-      }
-      const rv = [];
-      forOwn(errors[v], (e, index) => {
-        if (root === field) {
-          rv.push(
-            allErrorsItem({
-              errors: e,
-              field: `${field}_${v}[${index}]`,
-              classes
-            })
-          );
-        } else {
-          rv.push(
-            allErrorsItem({
-              errors: e,
-              field: `${field}.${v}[${index}]`,
-              classes
-            })
-          );
-        }
-      });
-      return rv;
+  }
+
+  // 2、符合错误条目数据结构的返回 Errors UI
+  if (isObject(errors)) {
+    if (has(errors, 'rule') && has(errors, 'message')) {
+      return [
+        <Errors
+          key={anchor}
+          anchor={anchor}
+          errors={[errors]}
+          classes={classes}
+        />
+      ];
     }
-    return null;
+  } else if (isArray(errors) && errors.length > 0) {
+    if (has(errors[0], 'rule') && has(errors[0], 'message')) {
+      return [
+        <Errors
+          key={anchor}
+          anchor={anchor}
+          errors={[errors]}
+          classes={classes}
+        />
+      ];
+    }
+  }
+
+  // 3、递归遍历
+  let items = [];
+  const _isArray = isArray(errors);
+  forOwn(errors, (error, k) => {
+    items = items.concat(
+      allErrorsItem({
+        id,
+        errors: error,
+        field: anchor,
+        key: k,
+        array: _isArray,
+        classes
+      })
+    );
   });
 
-  filter(keys(errors), k => {
-    const v = errors[k];
-    if (isObject(v)) {
-      items = items.concat(
-        allErrorsItem({ errors: v, field: `${field}_${k}`, classes })
-      );
-    }
-  });
   return items;
 }
 
-const ErrorList = ({ errors, field, classes }) => (
+const ErrorList = ({ errors, id, classes }) => (
   <div className={classes.errorList}>
     {hasErrors(errors) ? (
       <List
@@ -153,7 +152,7 @@ const ErrorList = ({ errors, field, classes }) => (
           </ListItem>
         }
       >
-        {allErrorsItem({ errors, field, classes, root: field })}
+        {allErrorsItem({ errors, classes, id, field: id })}
       </List>
     ) : null}
   </div>

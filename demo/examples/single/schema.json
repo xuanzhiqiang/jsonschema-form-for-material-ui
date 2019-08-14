@@ -78,12 +78,13 @@
       }
     },
     "dropzone": {
-      "type": "dropzone",
-      "tip": "图片上传",
+      "type": "DualDropZone",
+      "title": "图片上传",
+      "tip": "图片上传123",
       "width": 300,
       "height": 300,
       "accept": "image/png",
-      "previewType": "png",
+      "previewtype": "png",
       "filesize": [
         {
           "width": 100,
@@ -96,6 +97,7 @@
       ]
     },
     "link": {
+      "title": "PRD Document",
       "linktext": "Click to view PRD document",
       "type": "link"
     },
@@ -177,7 +179,7 @@
         }
       }
     },
-    "introduction_picture": {
+    "introductionPicture": {
       "title": {
         "en": "Introduction Picture",
         "zh-CN": "介绍图片"
@@ -186,6 +188,8 @@
         "en": "App's introduction. Size requirements for the `1242 * 2208` ` 2048 * 2732` each of three to five. Can not have alpha.",
         "zh-CN": "应用程序简介。'1242*2208` `2048*2732' 的尺寸要求，三到五个。不能有字母。"
       },
+      "minArrayLength": 3,
+      "maxArrayLength": 5,
       "type": "array",
       "items": {
         "default": {},
@@ -197,7 +201,7 @@
             "width": 300,
             "height": 300,
             "accept": "image/png",
-            "previewType": "png",
+            "previewtype": "png",
             "filesize": [
               {
                 "width": 100,

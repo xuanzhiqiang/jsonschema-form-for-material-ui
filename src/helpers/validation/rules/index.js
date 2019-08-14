@@ -5,5 +5,7 @@ export default {
   pattern: require('./pattern').default,
   minimum: require('./minimum').default,
   maximum: require('./maximum').default,
-  filesize: require('./file-size').default
+  filesize: require('./file-size').default,
+  minArrayLength: require('./min-array-length').default,
+  maxArrayLength: require('./max-array-length').default
 };

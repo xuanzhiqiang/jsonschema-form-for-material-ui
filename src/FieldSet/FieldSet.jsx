@@ -23,6 +23,7 @@ export const RawFieldSetContent = props => {
 // for unit testing
 export class RawFieldSet extends React.Component {
   shouldComponentUpdate = nextProps =>
+    // eslint-disable-next-line react/destructuring-assignment
     !isEqual(this.props.data, nextProps.data);
 
   render() {

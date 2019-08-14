@@ -29,6 +29,7 @@ const getFieldSpec = (schema, value) => {
     forOwn(value, item => {
       rv.push(getFieldSpec(schema.items, item));
     });
+    rv.push({ $set: validationResult(schema, value) });
     return rv;
   }
   return mapValues(schema.properties, (s, p) => getFieldSpec(s, value[p]));

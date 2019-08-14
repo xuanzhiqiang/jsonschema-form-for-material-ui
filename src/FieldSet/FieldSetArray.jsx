@@ -17,6 +17,7 @@ export const RawFieldSetArray = props => {
     classes,
     schema = {},
     uiSchema = {},
+    id,
     data,
     path,
     onMoveItemUp,
@@ -25,7 +26,6 @@ export const RawFieldSetArray = props => {
     errors,
     ...rest
   } = props;
-
   return (
     <div className={classes.root}>
       {!isArray(schema.items) && !schema.uniqueItems && (
@@ -51,11 +51,13 @@ export const RawFieldSetArray = props => {
               uiSchema={uiSchema.items}
               first={idx === 0}
               last={idx === data.length - 1}
+              id={id}
               {...rest}
             />
           ))}
           <div className={classes.addItemBtn}>
             <Fab
+              id={`${id}_${path}[${data.length}]`}
               color="primary"
               aria-label="Add"
               onClick={
@@ -81,6 +83,7 @@ export const RawFieldSetArray = props => {
                 schema={schema.items[idx]}
                 data={d}
                 uiSchema={(uiSchema.items || [])[idx]}
+                id={id}
                 {...rest}
               />
             );
@@ -100,6 +103,7 @@ export const RawFieldSetArray = props => {
             schema={{ ...schema.items, title: d }}
             data={includes(data, d)}
             uiSchema={uiSchema}
+            id={id}
             {...rest}
           />
         ))}
@@ -115,6 +119,7 @@ export const RawFieldSetArray = props => {
           onMoveItemUp={onMoveItemUp}
           onMoveItemDown={onMoveItemDown}
           onDeleteItem={onDeleteItem}
+          id={id}
           {...rest}
         />
       )}

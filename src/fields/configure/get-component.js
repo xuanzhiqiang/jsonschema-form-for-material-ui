@@ -7,6 +7,7 @@ const {
   Checkbox,
   Image,
   DropZone,
+  DualDropZone,
   Link
 } = require('../components');
 
@@ -31,6 +32,9 @@ export default ({ schema, uiSchema = {} }) => {
   }
   if (type === 'dropzone') {
     return DropZone;
+  }
+  if (type === 'DualDropZone') {
+    return DualDropZone;
   }
   if (type === 'link') {
     return Link;

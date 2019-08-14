@@ -10,7 +10,8 @@
     "powerOff": "",
     "intervalTime": ""
   },
+  "introductionPicture": [{}, {}, {}],
   "image": "https://linkplay-develop.oss-cn-beijing.aliyuncs.com/image/8ef133a3dede9bca8b466879a1f67398.png",
-  "link": "https://linkplay-develop.oss-cn-beijing.aliyuncs.com/image/8ef133a3dede9bca8b466879a1f67398.png",
+  "dropzone": "https://linkplay-develop.oss-cn-beijing.aliyuncs.com/image/8ef133a3dede9bca8b466879a1f67398.png",
   "keys": []
 }

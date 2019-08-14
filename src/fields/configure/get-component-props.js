@@ -83,7 +83,19 @@ export default ({
     rv.accept = schema.accept;
     rv.width = schema.width;
     rv.height = schema.height;
-    rv.previewType = schema.previewType;
+    rv.previewtype = schema.previewtype;
+    rv.onChange = onChange && onDropZoneChangeHandler(onChange);
+  } else if (type === 'DualDropZone') {
+    rv.src = schema.src;
+    rv.small = schema.small;
+    rv.alt = schema.alt;
+
+    rv.width = schema.width;
+    rv.height = schema.height;
+
+    rv.tip = schema.tip;
+    rv.accept = schema.accept;
+    rv.previewtype = schema.previewtype;
     rv.onChange = onChange && onDropZoneChangeHandler(onChange);
   } else if (type === 'link') {
     rv.linktext = schema.linktext;

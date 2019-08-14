@@ -152,7 +152,7 @@ class Form extends React.Component {
     const { errors, id, data, haveError } = this.state;
     return (
       <div className={classes.root}>
-        {showErrorList ? <ErrorList errors={errors} field={id} /> : null}
+        {showErrorList ? <ErrorList errors={errors} id={id} /> : null}
         <div className={classes.field}>
           <FormField
             path=""

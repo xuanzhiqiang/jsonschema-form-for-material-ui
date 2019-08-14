@@ -34,6 +34,16 @@
       }
     }
   },
+  "link": {
+    "ui:options": {
+      "disabled": true
+    }
+  },
+  "dropzone": {
+    "ui:options": {
+      "disabled": false
+    }
+  },
   "keys": {
     "items": {
       "ui:orientation": "row",
