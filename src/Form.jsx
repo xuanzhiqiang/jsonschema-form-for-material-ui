@@ -35,17 +35,14 @@ class Form extends React.Component {
     if (props.localized) {
       Localized.setLocalized(props.localized);
     }
-    const nextState = this.getStateFromProps(props);
     this.state = {
       id: generate(),
-      haveError: false,
-      ...nextState
+      haveError: false
     };
-    if (!isEqual(nextState.data, props.formData)) {
-      if (props.onChange) {
-        props.onChange({ formData: nextState.data });
-      }
-    }
+    const nextState = this.getStateFromProps(props);
+    this.setState(() => {
+      return { ...nextState };
+    }, this.notifyChange);
   }
 
   getStateFromProps = props => {
