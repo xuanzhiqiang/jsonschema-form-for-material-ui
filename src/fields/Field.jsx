@@ -5,7 +5,16 @@ import ConfiguredField from './ConfiguredField';
 import Localized from '../localized';
 
 export default props => {
-  const { path, id, schema, data, uiSchema, errors, showHelperError } = props;
+  const {
+    path,
+    id,
+    schema,
+    data,
+    uiSchema,
+    errors,
+    showHelperError,
+    disabled
+  } = props;
   const { type } = schema;
   const htmlId = `${id}_${path}`;
   const configuredProps = configureComponent({ ...props, htmlId });
@@ -26,6 +35,7 @@ export default props => {
       showHelperError={showHelperError}
       errors={errors}
       {...configuredProps}
+      disabled={disabled}
     />
   );
 };

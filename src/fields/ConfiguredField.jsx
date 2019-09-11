@@ -47,7 +47,8 @@ export class RawConfiguredField extends React.Component {
       title,
       componentProps = {},
       id,
-      errors
+      errors,
+      disabled = false
     } = this.props;
     const helpText =
       showHelperError && errors && errors.length > 0
@@ -85,6 +86,7 @@ export class RawConfiguredField extends React.Component {
           type={type}
           id={labelComponentProps.htmlFor}
           {...componentProps}
+          disabled={disabled}
         />
         <FormHelperText id={`${id}-help`}>{helpText}</FormHelperText>
       </FormControl>

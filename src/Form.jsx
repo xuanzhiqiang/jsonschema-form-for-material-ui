@@ -142,6 +142,7 @@ class Form extends React.Component {
       showErrorList,
       ErrorList,
       buttonProps,
+      disabled = false,
       ...rest
     } = this.props;
     const { errors, id, data, haveError } = this.state;
@@ -162,6 +163,7 @@ class Form extends React.Component {
             onDeleteItem={this.onDeleteItem}
             onAddItem={this.onAddItem}
             {...rest}
+            disabled={disabled}
           />
         </div>
         <div>
