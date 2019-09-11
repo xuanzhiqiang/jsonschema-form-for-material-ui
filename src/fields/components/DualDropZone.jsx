@@ -4,7 +4,7 @@ import Image from './Image';
 
 export default ({ disabled = false, ...ret }) => {
   if (disabled) {
-    const { width = 'auto', height = 'auto', ...rett } = ret;
+    const { width = 'auto', height = 'auto' } = ret;
     return (
       <div
         style={{
@@ -16,7 +16,7 @@ export default ({ disabled = false, ...ret }) => {
           borderColor: 'black'
         }}
       >
-        <Image {...rett} />
+        <Image {...ret} />
       </div>
     );
   }
