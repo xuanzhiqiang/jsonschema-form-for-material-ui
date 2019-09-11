@@ -48,12 +48,19 @@ export class RawConfiguredField extends React.Component {
       componentProps = {},
       id,
       errors,
-      disabled = false
+      disabled: disabled1 = false
     } = this.props;
     const helpText =
       showHelperError && errors && errors.length > 0
         ? this.formatErrorMessages()
         : helpT;
+
+    const {
+      disabled: disabled2 = false,
+      ...retComponentProps
+    } = componentProps;
+    const disabled = disabled1 || disabled2;
+
     return (
       <FormControl error={errors && errors.length > 0} className={classes.root}>
         {LabelComponent && title && (
@@ -85,7 +92,7 @@ export class RawConfiguredField extends React.Component {
           value={data || ''}
           type={type}
           id={labelComponentProps.htmlFor}
-          {...componentProps}
+          {...retComponentProps}
           disabled={disabled}
         />
         <FormHelperText id={`${id}-help`}>{helpText}</FormHelperText>

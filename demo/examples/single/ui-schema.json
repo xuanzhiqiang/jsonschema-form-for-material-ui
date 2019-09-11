@@ -41,7 +41,7 @@
   },
   "dropzone": {
     "ui:options": {
-      "disabled": false
+      "disabled": true
     }
   },
   "keys": {

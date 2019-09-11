@@ -24,17 +24,18 @@ export default props => {
   const helpText = Localized.getStringByLanguage(uiSchema['ui:help']);
   const errorHelp = Localized.getStringByLanguage(uiSchema['ui:errorHelp']);
 
+  const { data: defaultData, ...retConfiguredProps } = configuredProps;
   return (
     <ConfiguredField
       id={id}
-      data={data}
+      data={data || defaultData}
       type={type}
       descriptionText={descriptionText}
       helpText={helpText}
       errorHelp={errorHelp}
       showHelperError={showHelperError}
       errors={errors}
-      {...configuredProps}
+      {...retConfiguredProps}
       disabled={disabled}
     />
   );
