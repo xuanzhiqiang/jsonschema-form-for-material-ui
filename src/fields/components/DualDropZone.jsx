@@ -13,7 +13,8 @@ export default ({ disabled = false, ...ret }) => {
           height,
           borderStyle: 'dashed',
           borderWidth: 1,
-          borderColor: 'black'
+          borderColor: 'black',
+          overflow: 'hidden'
         }}
       >
         <Image {...ret} />
