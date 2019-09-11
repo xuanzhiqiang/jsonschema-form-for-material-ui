@@ -14,13 +14,15 @@ export const RawReorderableFormField = ({
   _onMoveItemUp,
   _onMoveItemDown,
   _onDeleteItem,
+  disabled = false,
   ...rest
 }) => (
   <div className={classNames(className, classes.root)}>
-    <FormField path={path} {...rest} />
+    <FormField path={path} disabled={disabled} {...rest} />
     <ReorderControls
       first={first}
       last={last}
+      disabled={disabled}
       onMoveItemUp={_onMoveItemUp}
       onMoveItemDown={_onMoveItemDown}
       onDeleteItem={_onDeleteItem}

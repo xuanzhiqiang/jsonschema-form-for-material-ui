@@ -99,6 +99,7 @@ class Example extends React.Component {
               showErrorList={true}
               showHelperError={true}
               onErrors={this.onErrors}
+              disabled={false}
             />
           </div>
         </div>

@@ -24,6 +24,7 @@ export const RawFieldSetArray = props => {
     onMoveItemDown,
     onDeleteItem,
     errors,
+    disabled = false,
     ...rest
   } = props;
   return (
@@ -52,6 +53,7 @@ export const RawFieldSetArray = props => {
               first={idx === 0}
               last={idx === data.length - 1}
               id={id}
+              disabled={disabled}
               {...rest}
             />
           ))}
@@ -60,6 +62,7 @@ export const RawFieldSetArray = props => {
               id={`${id}_${path}[${data.length}]`}
               color="primary"
               aria-label="Add"
+              disabled={disabled}
               onClick={
                 rest.onAddItem &&
                 rest.onAddItem(path, getDefaultValue(schema.items))

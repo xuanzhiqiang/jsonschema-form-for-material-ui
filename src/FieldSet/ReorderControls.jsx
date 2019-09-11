@@ -12,13 +12,14 @@ export const RawReorderControls = ({
   classes,
   onMoveItemUp,
   onMoveItemDown,
-  onDeleteItem
+  onDeleteItem,
+  disabled
 }) => (
   <div className={classes.root}>
     <IconButton
       className={classes.up}
       onClick={onMoveItemUp}
-      disabled={first}
+      disabled={first || disabled}
       size="small"
     >
       <ArrowUpward />
@@ -26,12 +27,17 @@ export const RawReorderControls = ({
     <IconButton
       className={classes.down}
       onClick={onMoveItemDown}
-      disabled={last}
+      disabled={last || disabled}
       size="small"
     >
       <ArrowDownward />
     </IconButton>
-    <IconButton className={classes.remove} onClick={onDeleteItem} size="small">
+    <IconButton
+      disabled={disabled}
+      className={classes.remove}
+      onClick={onDeleteItem}
+      size="small"
+    >
       <RemoveCircle />
     </IconButton>
   </div>
